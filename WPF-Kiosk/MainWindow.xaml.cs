@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Kiosk.Common;
+using WPF_Kiosk.Model;
 
 namespace WPF_Kiosk
 {
@@ -20,9 +22,13 @@ namespace WPF_Kiosk
     /// </summary>
     public partial class MainWindow : Window
     {
+        Food food = new Food();
         public MainWindow()
         {
             InitializeComponent();
+
+            food.category = Category.Desert;
         }
+
     }
 }
