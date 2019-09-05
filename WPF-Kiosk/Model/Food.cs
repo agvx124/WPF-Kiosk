@@ -19,6 +19,6 @@ namespace WPF_Kiosk.Model
         public int Count;
 
         // 카테고리
-        public Category category;
+        public Category Category;
     }
 }
