@@ -10,15 +10,15 @@ namespace WPF_Kiosk.Model
     class Food
     {
         // 음식명
-        public String Name;
+        public String Name { get; set; }
 
         // 각 음식의 가격
-        public int Price;
+        public int Price { get; set; }
 
         // 각 음식의 카운트
-        public int Count;
+        public int Count { get; set; }
 
         // 카테고리
-        public Category Category;
+        public eCategory Category { get; set; }
     }
 }

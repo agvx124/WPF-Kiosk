@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPF_Kiosk.Model
 {
-    class Table
+    class Seat
     {
         public int idx;
 

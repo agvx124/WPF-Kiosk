@@ -29,6 +29,12 @@ namespace WPF_Kiosk
             InitializeComponent();
                 
             SetTimer();
+            this.Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void Timer_tick(object sender, EventArgs e)
