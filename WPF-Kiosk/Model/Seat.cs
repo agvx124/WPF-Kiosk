@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WPF_Kiosk.Model
 {
-    class Seat
+    public class Seat
     {
-        public int idx;
+        public int Id { get; set; }
 
-        public List<Food> foodList;
+        public List<Food> FoodList { get; set; }
     }
 }

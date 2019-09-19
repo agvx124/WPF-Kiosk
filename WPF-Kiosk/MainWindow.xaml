@@ -5,18 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Kiosk"
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="1200">
+        Title="빽다방 키오스크"
+        FontFamily="NanumGothic">
     
     <Grid>
-        <Image Margin="10, 5, 0, 0" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Height="40"/>
+        <Image Margin="10, 5, 0, 0" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
 
-        <TextBlock FontSize="20" FontFamily="" x:Name="currentTimeText" Margin="10,10,10,0" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Top" HorizontalAlignment="Right"/>
-        
-        <ListView Margin="0, 50, 0, 0" Background="Black">
+        <TextBlock MouseLeftButtonDown="TbStats_MouseLeftButtonDown" FontSize="20" x:Name="tbStats" Margin="200, 15, 0, 0" TextWrapping="Wrap" Text="통계" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <TextBlock FontSize="20" x:Name="tbCurrentTime" Margin="10, 15, 10, 0" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Top" HorizontalAlignment="Right"/>
+
+        <ListView x:Name="lvSeat" Margin="0, 60, 0, 0" Background="White" BorderBrush="MidnightBlue">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Margin" Value="10"/>
-                    <Setter Property="BorderBrush" Value="Gray"/>
+                    <Setter Property="BorderBrush" Value="MidnightBlue"/>
+                    <Setter Property="BorderThickness" Value="2"/>
                 </Style>
             </ListView.ItemContainerStyle>
             
@@ -26,19 +30,15 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             
-            <ListView.ItemTemplate>
+            <!--<ListView.ItemTemplate>
                 <DataTemplate>
 
                 </DataTemplate>
-            </ListView.ItemTemplate>
+            </ListView.ItemTemplate>-->
             
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
+            
         </ListView>
+        <local:StatCtrl x:Name="StatControl" Visibility="Collapsed"/>
     </Grid>
 
 

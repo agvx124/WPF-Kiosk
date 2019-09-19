@@ -7,7 +7,7 @@ using WPF_Kiosk.Common;
 
 namespace WPF_Kiosk.Model
 {
-    class Food
+    public class Food
     {
         // 음식명
         public String Name { get; set; }

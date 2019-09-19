@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using WPF_Kiosk.Common;
+using WPF_Kiosk.Control;
 using WPF_Kiosk.Model;
 
 namespace WPF_Kiosk
@@ -27,19 +28,31 @@ namespace WPF_Kiosk
         public MainWindow()
         {
             InitializeComponent();
-                
-            SetTimer();
+
             this.Loaded += MainWindow_Loaded;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            App.SeatData.Load();
+            AddListSeatItems();
+            SetTimer();
+        }
+
+        private void AddListSeatItems()
+        {
+            foreach(Seat seat in App.SeatData.listSeat)
+            {
+                SeatCtrl seatCtrl = new SeatCtrl();
+                seatCtrl.SetSeat(seat);
+
+                lvSeat.Items.Add(seatCtrl);
+            }
         }
 
         private void Timer_tick(object sender, EventArgs e)
         {
-            currentTimeText.Text = DateTime.Now.ToString();
+            tbCurrentTime.Text = DateTime.Now.ToString();
         }
 
         private void SetTimer()
@@ -48,6 +61,11 @@ namespace WPF_Kiosk
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Tick += Timer_tick;
             timer.Start();
+        }
+
+        private void TbStats_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            StatControl.Visibility = Visibility.Visible;
         }
     }
 }

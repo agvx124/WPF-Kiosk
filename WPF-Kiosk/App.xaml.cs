@@ -13,5 +13,6 @@ namespace WPF_Kiosk
     /// </summary>
     public partial class App : Application
     {
+        public static SeatDataSource SeatData = new SeatDataSource();
     }
 }
