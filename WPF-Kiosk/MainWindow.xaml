@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Kiosk"
+        xmlns:control="clr-namespace:WPF_Kiosk.Control"
         mc:Ignorable="d"
         Title="빽다방 키오스크"
         FontFamily="NanumGothic">
@@ -15,7 +16,8 @@
 
         <TextBlock FontSize="20" x:Name="tbCurrentTime" Margin="10, 15, 10, 0" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Top" HorizontalAlignment="Right"/>
 
-        <ListView x:Name="lvSeat" Margin="0, 60, 0, 0" Background="White" BorderBrush="MidnightBlue">
+        <ListView x:Name="lvSeat" SelectionChanged="LvSeat_Selected"
+                  Margin="0, 60, 0, 0" Background="White" BorderBrush="MidnightBlue">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Margin" Value="10"/>
@@ -38,7 +40,8 @@
             
             
         </ListView>
-        <local:StatCtrl x:Name="StatControl" Visibility="Collapsed"/>
+        <control:StatCtrl x:Name="StatControl" Visibility="Collapsed"/>
+        <control:MenuCtrl x:Name="MenuControl" Visibility="Collapsed"/>
     </Grid>
 
 

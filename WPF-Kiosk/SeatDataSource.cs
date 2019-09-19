@@ -29,5 +29,6 @@ namespace WPF_Kiosk
 
             isLoaded = true;
         }
+
     }
 }

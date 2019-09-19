@@ -57,10 +57,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control\MenuCtrl.xaml.cs">
+      <DependentUpon>MenuCtrl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SeatDataSource.cs" />
-    <Compile Include="StatCtrl.xaml.cs">
+    <Compile Include="Control\StatCtrl.xaml.cs">
       <DependentUpon>StatCtrl.xaml</DependentUpon>
     </Compile>
+    <Page Include="Control\MenuCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\SeatCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,7 +88,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="StatCtrl.xaml">
+    <Page Include="Control\StatCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

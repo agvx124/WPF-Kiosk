@@ -24,7 +24,6 @@ namespace WPF_Kiosk
     /// </summary>
     public partial class MainWindow : Window
     {
-        Food food = new Food();
         public MainWindow()
         {
             InitializeComponent();
@@ -66,6 +65,15 @@ namespace WPF_Kiosk
         private void TbStats_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             StatControl.Visibility = Visibility.Visible;
+        }
+
+        private void LvSeat_Selected(object sender, RoutedEventArgs e)
+        {
+            SeatCtrl seat = (lvSeat.SelectedItem as SeatCtrl);
+            MenuControl.seatId = seat.GetSeat();
+
+            
+            MenuControl.Visibility = Visibility.Visible;
         }
     }
 }

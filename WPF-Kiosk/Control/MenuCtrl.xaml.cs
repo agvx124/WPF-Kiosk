@@ -17,28 +17,22 @@ using WPF_Kiosk.Model;
 namespace WPF_Kiosk.Control
 {
     /// <summary>
-    /// Interaction logic for SeatCtrl.xaml
+    /// Interaction logic for MenuCtrl.xaml
     /// </summary>
-    public partial class SeatCtrl : UserControl
+    public partial class MenuCtrl : UserControl
     {
-        public SeatCtrl()
+        public int seatId
+        {
+            get => seatId;
+            set
+            {
+                // set을 했을시 컨트롤에 추가
+            }
+        }
+        public MenuCtrl()
         {
             InitializeComponent();
         }
 
-        public void SetSeat(int id)
-        {
-            tbId.Text = id.ToString();
-        }
-
-        public int GetSeat()
-        {
-            return Convert.ToInt32(tbId.Text);
-        }
-
-        public void SetSeat(Seat seat)
-        {
-            tbId.Text = seat.Id.ToString();
-        }
     }
 }

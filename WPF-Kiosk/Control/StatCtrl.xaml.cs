@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPF_Kiosk
+namespace WPF_Kiosk.Control
 {
     /// <summary>
     /// Interaction logic for StatCtrl.xaml
