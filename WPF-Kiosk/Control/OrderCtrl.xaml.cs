@@ -19,7 +19,7 @@ namespace WPF_Kiosk.Control
     /// <summary>
     /// Interaction logic for MenuCtrl.xaml
     /// </summary>
-    public partial class MenuCtrl : UserControl
+    public partial class OrderCtrl : UserControl
     {
         public int seatId
         {
@@ -29,7 +29,7 @@ namespace WPF_Kiosk.Control
                 // set을 했을시 컨트롤에 추가
             }
         }
-        public MenuCtrl()
+        public OrderCtrl()
         {
             InitializeComponent();
         }
