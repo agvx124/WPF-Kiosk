@@ -21,18 +21,27 @@ namespace WPF_Kiosk.Control
     /// </summary>
     public partial class OrderCtrl : UserControl
     {
-        public int seatId
+        private int _seatName;
+        public int SeatName
         {
-            get => seatId;
+            get => _seatName;
             set
             {
+                _seatName = value;
                 // set을 했을시 컨트롤에 추가
+                Seat seat = App.SeatData.listSeat[_seatName];
+                tbTableId.Text = _seatName.ToString();
             }
         }
+
         public OrderCtrl()
         {
             InitializeComponent();
         }
 
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+        }
     }
 }

@@ -26,19 +26,19 @@ namespace WPF_Kiosk.Control
             InitializeComponent();
         }
 
-        public void SetSeat(int id)
+        public void SetSeat(int name)
         {
-            tbId.Text = id.ToString();
+            tbSeatName.Text = name.ToString();
         }
 
         public int GetSeat()
         {
-            return Convert.ToInt32(tbId.Text);
+            return Convert.ToInt32(tbSeatName.Text);
         }
 
         public void SetSeat(Seat seat)
         {
-            tbId.Text = seat.Id.ToString();
+            tbSeatName.Text = seat.Name.ToString();
         }
     }
 }

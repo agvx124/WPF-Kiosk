@@ -57,14 +57,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Control\MenuCtrl.xaml.cs">
-      <DependentUpon>MenuCtrl.xaml</DependentUpon>
+    <Compile Include="Control\OrderCtrl.xaml.cs">
+      <DependentUpon>OrderCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="SeatDataSource.cs" />
     <Compile Include="Control\StatCtrl.xaml.cs">
       <DependentUpon>StatCtrl.xaml</DependentUpon>
     </Compile>
-    <Page Include="Control\MenuCtrl.xaml">
+    <Page Include="Control\OrderCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -41,7 +41,7 @@
             
         </ListView>
         <control:StatCtrl x:Name="StatControl" Visibility="Collapsed"/>
-        <control:MenuCtrl x:Name="MenuControl" Visibility="Collapsed"/>
+        <control:OrderCtrl x:Name="OrderControl" Visibility="Collapsed"/>
     </Grid>
 
 

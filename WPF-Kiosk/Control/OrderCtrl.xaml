@@ -33,13 +33,19 @@
         <Grid Grid.Column="0">
             <StackPanel>
                 <ListBox ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-                    <Image Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" Width="140"/>
+                    <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" Width="140"/>
                     <ListBoxItem Content="전체" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="커피" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="음료" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="아이스크림/디저트" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="빽스치노" Style="{StaticResource MenuStyle}"/>
                 </ListBox>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <StackPanel>
+                <TextBlock x:Name="tbTableId" Text="Table" FontSize="24" Foreground="Black"/>
             </StackPanel>
         </Grid>
     </Grid>

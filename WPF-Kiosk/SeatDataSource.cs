@@ -19,16 +19,15 @@ namespace WPF_Kiosk
 
             listSeat = new List<Seat>()
             {
-                new Seat() { Id = 1},
-                new Seat() { Id = 2},
-                new Seat() { Id = 3},
-                new Seat() { Id = 4},
-                new Seat() { Id = 5},
-                new Seat() { Id = 6}
+                new Seat() { Id = 0, Name = 1},
+                new Seat() { Id = 1, Name = 2},
+                new Seat() { Id = 2, Name = 3},
+                new Seat() { Id = 3, Name = 4},
+                new Seat() { Id = 4, Name = 5},
+                new Seat() { Id = 5, Name = 6}
             };
 
             isLoaded = true;
         }
-
     }
 }
