@@ -18,6 +18,9 @@ namespace WPF_Kiosk.Model
         // 각 음식의 카운트
         public int Count { get; set; }
 
+        // 음식 이미지 경로
+        public String ImagePath { get; set; }
+
         // 카테고리
         public eCategory Category { get; set; }
     }
