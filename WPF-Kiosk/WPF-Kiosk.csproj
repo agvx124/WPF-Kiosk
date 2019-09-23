@@ -60,6 +60,7 @@
     <Compile Include="Control\OrderCtrl.xaml.cs">
       <DependentUpon>OrderCtrl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FoodDataSource.cs" />
     <Compile Include="SeatDataSource.cs" />
     <Compile Include="Control\StatCtrl.xaml.cs">
       <DependentUpon>StatCtrl.xaml</DependentUpon>
