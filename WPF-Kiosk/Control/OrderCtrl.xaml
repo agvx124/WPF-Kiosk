@@ -44,6 +44,28 @@
         </Grid>
 
         <Grid Grid.Column="1">
+            <ListView x:Name="lvFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      SelectionMode="Single">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="300" Height="150">
+                            <Image Width="150" Height="50" Source="{Binding ImagePath}"></Image>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                            <TextBlock Text="{Binding Price}"></TextBlock>
+                            <TextBlock Text="{Binding Count}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1">
             <StackPanel>
                 <TextBlock x:Name="tbTableId" Text="Table" FontSize="24" Foreground="Black"/>
             </StackPanel>
