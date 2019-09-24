@@ -29,7 +29,8 @@ namespace WPF_Kiosk.Control
             {
                 _seatName = value;
                 // set을 했을시 컨트롤에 추가
-                Seat seat = App.SeatData.listSeat[_seatName];
+                Seat seat = App.SeatData.listSeat[_seatName-1];
+
                 tbTableId.Text = _seatName.ToString();
             }
         }
@@ -37,11 +38,28 @@ namespace WPF_Kiosk.Control
         public OrderCtrl()
         {
             InitializeComponent();
+            this.Loaded += OrderCtrl_Loaded;
+
+            MenuList.AddHandler(MouseLeftButtonDownEvent, new MouseButtonEventHandler(MenuList_MouseLeftButtonDown), true);
+        }
+        private void OrderCtrl_Loaded(object sender, RoutedEventArgs e)
+        {
+            App.FoodData.Load();
+#if true
+            lvFood.ItemsSource = App.FoodData.listFood;
+#else
+
+#endif
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
+        }
+
+        private void MenuList_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine(MenuList.SelectedIndex);
         }
     }
 }

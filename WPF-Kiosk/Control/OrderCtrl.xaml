@@ -4,11 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_Kiosk.Control"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="MenuStyle" TargetType="ListBoxItem">
-            <Setter Property="Height" Value="50"/>
+            <Setter Property="Height" Value="70"/>
             <Setter Property="BorderBrush" Value="MidnightBlue"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Background" Value="Black"/>
@@ -22,17 +21,17 @@
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="300"/>
+            <RowDefinition Height="400"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Column="0">
             <StackPanel>
-                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListBox x:Name="MenuList"  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                     <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" Width="140"/>
                     <ListBoxItem Content="전체" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="커피" Style="{StaticResource MenuStyle}"/>
@@ -58,7 +57,6 @@
                             <Image Width="150" Height="50" Source="{Binding ImagePath}"></Image>
                             <TextBlock Text="{Binding Name}"></TextBlock>
                             <TextBlock Text="{Binding Price}"></TextBlock>
-                            <TextBlock Text="{Binding Count}"></TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

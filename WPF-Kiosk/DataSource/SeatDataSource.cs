@@ -24,7 +24,7 @@ namespace WPF_Kiosk
                 new Seat() { Id = 2, Name = 3},
                 new Seat() { Id = 3, Name = 4},
                 new Seat() { Id = 4, Name = 5},
-                new Seat() { Id = 5, Name = 6}
+                new Seat() { Id = 5, Name = 6},
             };
 
             isLoaded = true;
