@@ -137,8 +137,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Coffee\더블에스프레소.jpg" />
+    <Content Include="Assets\Desert\빽엔나.jpg" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\Drink\깔라만시티.jpg" />
     <Resource Include="Assets\Drink\녹차라떼.jpg" />
@@ -151,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Desert\노말한소프트.jpg" />
-    <Resource Include="Assets\Desert\뺵엔나.jpg" />
     <Resource Include="Assets\Desert\사라다빵.jpg" />
     <Resource Include="Assets\Desert\소세지빵.jpg" />
     <Resource Include="Assets\Desert\옥수크림.jpg" />

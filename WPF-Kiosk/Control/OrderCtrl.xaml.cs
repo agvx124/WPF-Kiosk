@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Kiosk.Common;
 using WPF_Kiosk.Model;
 
 namespace WPF_Kiosk.Control
@@ -59,7 +60,40 @@ namespace WPF_Kiosk.Control
 
         private void MenuList_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine(MenuList.SelectedIndex);
+            int menuIndex = MenuList.SelectedIndex;
+            switch (menuIndex)
+            {
+                case 1:
+                    {
+                        lvFood.ItemsSource = App.FoodData.listFood;
+                        break;
+                    }
+                case 2:
+                    {
+                        setLvFoodItem(eCategory.Coffee);
+                        break;
+                    }
+                case 3:
+                    {
+                        setLvFoodItem(eCategory.Drink);
+                        break;
+                    }
+                case 4:
+                    {
+                        setLvFoodItem(eCategory.Desert);
+                        break;
+                    }
+                case 5:
+                    {
+                        setLvFoodItem(eCategory.SignatureMenu);
+                        break;
+                    }
+            }
+        }
+
+        private void setLvFoodItem(eCategory category)
+        {
+            lvFood.ItemsSource = App.FoodData.listFood.FindAll(x => x.Category == category);
         }
     }
 }

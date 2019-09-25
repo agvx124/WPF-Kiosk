@@ -28,10 +28,9 @@
             <RowDefinition Height="400"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
         <Grid Grid.Column="0">
             <StackPanel>
-                <ListBox x:Name="MenuList"  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListBox x:Name="MenuList" MouseDown="MenuList_MouseLeftButtonDown" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                     <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" Width="140"/>
                     <ListBoxItem Content="전체" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="커피" Style="{StaticResource MenuStyle}"/>
