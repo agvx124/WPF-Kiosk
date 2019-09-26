@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WPF_Kiosk.Model;
 
 namespace WPF_Kiosk
 {
@@ -16,5 +17,7 @@ namespace WPF_Kiosk
         public static SeatDataSource SeatData = new SeatDataSource();
 
         public static FoodDataSource FoodData = new FoodDataSource();
+
+        public static List<OrderLog> orderLog = new List<OrderLog>();
     }
 }

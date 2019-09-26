@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPF_Kiosk.DataSource
+namespace WPF_Kiosk.Model
 {
-    public class StatDataSource
+    public class OrderLog
     {
-        bool isLoaded = false;
-        public int todaySales = 0;
+        public Food food { get; set; }
 
-
+        public int Count { get; set; }
 
     }
 }

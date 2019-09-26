@@ -32,13 +32,6 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             
-            <!--<ListView.ItemTemplate>
-                <DataTemplate>
-
-                </DataTemplate>
-            </ListView.ItemTemplate>-->
-            
-            
         </ListView>
         <control:StatCtrl x:Name="StatControl" Visibility="Collapsed"/>
         <control:OrderCtrl x:Name="OrderControl" Visibility="Collapsed"/>

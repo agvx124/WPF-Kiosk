@@ -12,6 +12,7 @@ namespace WPF_Kiosk
     {
         bool isLoaded = false;
         public List<Food> listFood = null;
+        public int todaySales = 0;
 
         public void Load()
         {

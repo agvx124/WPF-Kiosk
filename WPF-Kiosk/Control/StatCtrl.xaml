@@ -11,14 +11,9 @@
         <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Margin="10, 5, 0, 0" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
 
         <Grid Margin="0, 80, 0, 0">
-            <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Left">
-                <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Salesman" Labels="{Binding Labels}"></lvc:Axis>
-                </lvc:CartesianChart.AxisX>
-                <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="Sold Apps" LabelFormatter="{Binding Formatter}"></lvc:Axis>
-                </lvc:CartesianChart.AxisY>
-            </lvc:CartesianChart>
+            <lvc:PieChart x:Name="lvcMenu" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
+                
+            </lvc:PieChart>
         </Grid>
 
     </Grid>
