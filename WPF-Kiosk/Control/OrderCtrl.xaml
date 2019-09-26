@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="MenuStyle" TargetType="ListBoxItem">
-            <Setter Property="Height" Value="70"/>
+            <Setter Property="Height" Value="90"/>
             <Setter Property="BorderBrush" Value="MidnightBlue"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Background" Value="Black"/>
@@ -21,17 +21,16 @@
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="400"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
         <Grid Grid.Column="0">
             <StackPanel>
-                <ListBox x:Name="MenuList"  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListBox x:Name="MenuList" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                     <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" Width="140"/>
                     <ListBoxItem Content="전체" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="커피" Style="{StaticResource MenuStyle}"/>
@@ -53,10 +52,12 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Width="300" Height="150">
-                            <Image Width="150" Height="50" Source="{Binding ImagePath}"></Image>
-                            <TextBlock Text="{Binding Name}"></TextBlock>
-                            <TextBlock Text="{Binding Price}"></TextBlock>
+                        <StackPanel Orientation="Horizontal" Width="400" Height="300">
+                            <Image Source="{Binding ImagePath}"></Image>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                <TextBlock Text="{Binding Price}"></TextBlock>
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
