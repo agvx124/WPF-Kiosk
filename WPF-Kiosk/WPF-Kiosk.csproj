@@ -134,11 +134,7 @@
     <Resource Include="Assets\Coffee\바닐라라떼.jpg" />
     <Resource Include="Assets\Coffee\백스라떼.jpg" />
     <Resource Include="Assets\Coffee\블랙펄카페라떼.jpg" />
-    <Resource Include="Assets\Coffee\연유라떼.jpg" />
     <Resource Include="Assets\Coffee\카페모카.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Coffee\앗메리카노.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Coffee\원조커피.jpg" />
@@ -146,11 +142,12 @@
   <ItemGroup>
     <Resource Include="Assets\Coffee\더블에스프레소.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\SignatureMenu\민트초코빽스치노.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Drink\깔라만시티.jpg" />
     <Resource Include="Assets\Drink\녹차라떼.jpg" />
-    <Resource Include="Assets\Drink\민트초코라떼.png" />
     <Resource Include="Assets\Drink\밀크티.jpg" />
     <Resource Include="Assets\Drink\블랙펄라떼.jpg" />
     <Resource Include="Assets\Drink\블랙펄밀크티.jpg" />
@@ -169,13 +166,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\SignatureMenu\녹차빽스치노.jpg" />
-    <Resource Include="Assets\SignatureMenu\민트초코빽스치노.png" />
-    <Resource Include="Assets\SignatureMenu\베리크런치빽스치노.png" />
     <Resource Include="Assets\SignatureMenu\완전딸바.jpg" />
     <Resource Include="Assets\SignatureMenu\완전초바.jpg" />
     <Resource Include="Assets\SignatureMenu\원조빽스치노.jpg" />
-    <Resource Include="Assets\SignatureMenu\카라멜빽스치노.png" />
     <Resource Include="Assets\SignatureMenu\피스타치오빽스치노.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\SignatureMenu\베리크런치빽스치노.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\SignatureMenu\카라멜빽스치노.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Drink\민트초코라떼.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Coffee\앗!메리카노.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Coffee\달달연유라떼.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
