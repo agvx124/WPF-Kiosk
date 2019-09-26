@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveCharts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,18 @@ namespace WPF_Kiosk.Control
         public StatCtrl()
         {
             InitializeComponent();
+
+            //SeriesCollection = new SeriesCollection
+            //{
+            //    new ColumnS
+            //}
         }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed; 
+        }
+
+        public SeriesCollection seriesColletion { get; set; }
     }
 }
