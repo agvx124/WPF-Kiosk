@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="MenuStyle" TargetType="ListBoxItem">
-            <Setter Property="Height" Value="90"/>
+            <Setter Property="Height" Value="86"/>
             <Setter Property="BorderBrush" Value="MidnightBlue"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Background" Value="Black"/>
@@ -43,7 +43,8 @@
 
         <Grid Grid.Column="1">
             <ListView x:Name="lvFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      SelectionMode="Single">
+                      SelectionMode="Single"
+                      MouseLeftButtonUp="LvFood_MouseLeftButtonUp">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
@@ -65,9 +66,35 @@
         </Grid>
 
         <Grid Grid.Row="1">
+            <Image x:Name="selectedImage"></Image>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
             <StackPanel>
                 <TextBlock x:Name="tbTableId" Text="Table" FontSize="24" Foreground="Black"/>
+                <ListView>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="상품명" Width="500"/>
+                            <GridViewColumn Header="수량" Width="300"/>
+                            <GridViewColumn Header="금액" Width="350"/>
+                        </GridView>
+                    </ListView.View>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Width="400" Height="300">
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
+            
         </Grid>
     </Grid>
 </UserControl>

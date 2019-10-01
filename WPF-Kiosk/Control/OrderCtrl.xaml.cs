@@ -23,6 +23,7 @@ namespace WPF_Kiosk.Control
     public partial class OrderCtrl : UserControl
     {
         private int _seatName;
+        private string _selectedImage;
         public int SeatName
         {
             get => _seatName;
@@ -32,7 +33,15 @@ namespace WPF_Kiosk.Control
                 // set을 했을시 컨트롤에 추가
                 Seat seat = App.SeatData.listSeat[_seatName-1];
 
-                tbTableId.Text = _seatName.ToString();
+                tbTableId.Text = _seatName.ToString() + "번 테이블";
+            }
+        }
+        public string DisplayedImagePath
+        {
+            get => _selectedImage;
+            set
+            {
+                _selectedImage = value;
             }
         }
 
@@ -94,6 +103,16 @@ namespace WPF_Kiosk.Control
         private void setLvFoodItem(eCategory category)
         {
             lvFood.ItemsSource = App.FoodData.listFood.FindAll(x => x.Category == category);
+        }
+
+        private void LvFood_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Food food = lvFood.SelectedItems[0] as Food;
+            BitmapImage bi = new BitmapImage();
+            bi.BeginInit();
+            bi.UriSource = new Uri(food.ImagePath, UriKind.RelativeOrAbsolute);
+            bi.EndInit();
+            selectedImage.Source = bi;
         }
     }
 }

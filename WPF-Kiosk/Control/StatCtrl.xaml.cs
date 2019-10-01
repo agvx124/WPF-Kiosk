@@ -97,12 +97,12 @@ namespace WPF_Kiosk.Control
         //    DataContext = this;
         //}
 
-        private void AddMenuChartItem()
-        {
-           lvcMenu.Series = new SeriesCollection
-           {
-               foreach ()
-           }
-        }
+        //private void AddMenuChartItem()
+        //{
+        //   lvcMenu.Series = new SeriesCollection
+        //   {
+        //       foreach ()
+        //   }
+        //}
     }
 }
