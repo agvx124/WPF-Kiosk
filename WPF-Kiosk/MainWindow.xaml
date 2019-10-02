@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Kiosk"
         xmlns:control="clr-namespace:WPF_Kiosk.Control"
+        WindowState="Maximized"
+        WindowStyle="None"
         mc:Ignorable="d"
         Title="빽다방 키오스크"
         FontFamily="NanumGothic">

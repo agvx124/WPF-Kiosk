@@ -69,11 +69,17 @@ namespace WPF_Kiosk
 
         private void LvSeat_Selected(object sender, RoutedEventArgs e)
         {
+            if (lvSeat.SelectedItem == null)
+            {
+                return;
+            }
+
             SeatCtrl seat = (lvSeat.SelectedItem as SeatCtrl);
             OrderControl.SeatName = seat.GetSeat();
             
-            
             OrderControl.Visibility = Visibility.Visible;
+
+            lvSeat.SelectedIndex = -1;
         }
     }
 }
