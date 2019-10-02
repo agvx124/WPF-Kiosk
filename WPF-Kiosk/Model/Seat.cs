@@ -8,6 +8,10 @@ namespace WPF_Kiosk.Model
 {
     public class Seat
     {
+        public Seat()
+        {
+            FoodList = new List<Food>();
+        }
         public int Id { get; set; }
 
         public int Name { get; set; }

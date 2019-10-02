@@ -108,11 +108,27 @@ namespace WPF_Kiosk.Control
         private void LvFood_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Food food = lvFood.SelectedItems[0] as Food;
+            addSelectedImage(food);
+            addSelectedMenu(food);
+        }
+
+        private void addSelectedImage(Food food)
+        {
             BitmapImage bi = new BitmapImage();
             bi.BeginInit();
             bi.UriSource = new Uri(food.ImagePath, UriKind.RelativeOrAbsolute);
             bi.EndInit();
             selectedImage.Source = bi;
+        }
+
+        private void addSelectedMenu(Food food)
+        {
+            Seat seat = App.SeatData.listSeat.Find(x => x.Id == SeatName);
+            if(seat.FoodList.Exists(x => x.Name == food.Name))
+            {
+                seat.FoodList.Find(x => x.Name == food.Name).Count++;
+            }
+            seat.FoodList.Add(food);
         }
     }
 }
