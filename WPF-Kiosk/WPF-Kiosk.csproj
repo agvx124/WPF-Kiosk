@@ -91,7 +91,6 @@
     <Compile Include="Control\SeatCtrl.xaml.cs">
       <DependentUpon>SeatCtrl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataSource\StatDataSource.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

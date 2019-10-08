@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Kiosk.Model;
 
 namespace WPF_Kiosk.Control
 {
@@ -25,14 +26,27 @@ namespace WPF_Kiosk.Control
 
         public Func<ChartPoint, string> PointLabel { get; set; }
 
+        public SeriesCollection SeriesCollection { get; set; }
+
         public StatCtrl()
         {
             InitializeComponent();
 
-            //PointLabel = chartPoint =>
-            //   string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+            SeriesCollection = new SeriesCollection();
+            foreach (OrderLog orderLog in App.OrderLogData)
+            {
+                PieSeries newItem = new PieSeries();
+                newItem.Title = orderLog.food.Name;
+                newItem.Values = new ChartValues<int>() { orderLog.Count };
 
-            //DataContext = this;
+                SeriesCollection.Add(newItem);
+            }
+
+
+            PointLabel = chartPoint =>
+               string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+
+            DataContext = this;            
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -40,43 +54,10 @@ namespace WPF_Kiosk.Control
             this.Visibility = Visibility.Collapsed; 
         }
 
-        //private void SetLiveChart()
-        //{
-        //    try
-        //    {
-        //        seriesColletion = new SeriesCollection
-        //        {
-        //            new ColumnSeries
-        //            {
-        //                Title = "판매량",
-        //                Values = new ChartValues<double> { 10, 50, 39, 50 }
-        //            }
-        //        };
-
-        //        seriesColletion.Add(new ColumnSeries
-        //        {
-        //            Title = "매출액",
-        //            Values = new ChartValues<double> { 11, 56, 42 }
-        //        });
-
-        //        seriesColletion[1].Values.Add(48d);
-
-        //        Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
-        //        Formatter = value => value.ToString("N");
-
-        //        DataContext = this;
-        //    }
-        //    catch (NullReferenceException e)
-        //    {
-        //    }
-            
-        //}
-
         private void Chart_OnDataClick(object sender, ChartPoint chartpoint)
         {
             var chart = (LiveCharts.Wpf.PieChart)chartpoint.ChartView;
 
-            //clear selected slice.
             foreach (PieSeries series in chart.Series)
                 series.PushOut = 0;
 
@@ -87,7 +68,7 @@ namespace WPF_Kiosk.Control
         //private void setMenuChart()
         //{
         //    string[] arr = new string[] { "바나나우유", "딸기우유", "초코우유", "수박우유" };
-        //    //pie.Title = "바나나우유";
+        //    pie.Title = "바나나우유";
 
         //    PointLabel = chartPoint =>
         //    string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);

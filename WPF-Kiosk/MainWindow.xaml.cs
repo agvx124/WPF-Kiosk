@@ -51,7 +51,10 @@ namespace WPF_Kiosk
 
         private void Timer_tick(object sender, EventArgs e)
         {
-            tbCurrentTime.Text = DateTime.Now.ToString();
+            App.Current.Dispatcher.Invoke(() => 
+            {
+                tbCurrentTime.Text = DateTime.Now.ToString();
+            });            
         }
 
         private void SetTimer()

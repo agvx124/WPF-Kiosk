@@ -18,6 +18,6 @@ namespace WPF_Kiosk
 
         public static FoodDataSource FoodData = new FoodDataSource();
 
-        public static List<OrderLog> orderLog = new List<OrderLog>();
+        public static List<OrderLog> OrderLogData = new List<OrderLog>();
     }
 }

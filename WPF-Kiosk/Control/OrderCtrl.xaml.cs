@@ -29,6 +29,7 @@ namespace WPF_Kiosk.Control
             get => _seatName;
             set
             {
+                Console.WriteLine(value);
                 _seatName = value;
                 // set을 했을시 컨트롤에 추가
                 Seat seat = App.SeatData.listSeat[_seatName-1];
@@ -79,28 +80,28 @@ namespace WPF_Kiosk.Control
                     }
                 case 2:
                     {
-                        setLvFoodItem(eCategory.Coffee);
+                        SetLvFoodItem(eCategory.Coffee);
                         break;
                     }
                 case 3:
                     {
-                        setLvFoodItem(eCategory.Drink);
+                        SetLvFoodItem(eCategory.Drink);
                         break;
                     }
                 case 4:
                     {
-                        setLvFoodItem(eCategory.Desert);
+                        SetLvFoodItem(eCategory.Desert);
                         break;
                     }
                 case 5:
                     {
-                        setLvFoodItem(eCategory.SignatureMenu);
+                        SetLvFoodItem(eCategory.SignatureMenu);
                         break;
                     }
             }
         }
 
-        private void setLvFoodItem(eCategory category)
+        private void SetLvFoodItem(eCategory category)
         {
             lvFood.ItemsSource = App.FoodData.listFood.FindAll(x => x.Category == category);
         }
@@ -108,11 +109,11 @@ namespace WPF_Kiosk.Control
         private void LvFood_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Food food = lvFood.SelectedItems[0] as Food;
-            addSelectedImage(food);
-            addSelectedMenu(food);
+            AddSelectedImage(food);
+            AddSelectedMenu(food);
         }
 
-        private void addSelectedImage(Food food)
+        private void AddSelectedImage(Food food)
         {
             BitmapImage bi = new BitmapImage();
             bi.BeginInit();
@@ -121,14 +122,17 @@ namespace WPF_Kiosk.Control
             selectedImage.Source = bi;
         }
 
-        private void addSelectedMenu(Food food)
+        private void AddSelectedMenu(Food food)
         {
             Seat seat = App.SeatData.listSeat.Find(x => x.Id == SeatName);
-            if(seat.FoodList.Exists(x => x.Name == food.Name))
+            if (seat.FoodList.Exists(x => x.Name == food.Name))
             {
                 seat.FoodList.Find(x => x.Name == food.Name).Count++;
+                App.OrderLogData.Find(x => x.food.Name == food.Name).Count++;
             }
             seat.FoodList.Add(food);
+
+            Console.WriteLine(App.OrderLogData.Find(x => x.food.Name == food.Name).Count);
         }
     }
 }

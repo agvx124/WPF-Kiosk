@@ -61,6 +61,19 @@ namespace WPF_Kiosk
                 new Food() {Category = eCategory.SignatureMenu, Name = "민트초코 빽스치노", Price = 4000, ImagePath = @"/Assets\SignatureMenu\민트초코빽스치노.jpg"},
 
             };
+
+            SetAppOrderLog();
+        }
+
+        private void SetAppOrderLog()
+        {
+            foreach (Food food in listFood)
+            {
+                OrderLog orderLog = new OrderLog();
+                orderLog.food = food;
+
+                App.OrderLogData.Add(orderLog);
+            }
         }
     }
 }

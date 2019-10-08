@@ -10,9 +10,12 @@
     <Grid Background="White">
         <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Margin="10, 5, 0, 0" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
 
-        <Grid Margin="0, 80, 0, 0">
-            <lvc:PieChart x:Name="lvcMenu" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
-                
+        <Grid Margin="0, 100, 0, 0">
+            <lvc:PieChart LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
+                <!--<lvc:PieChart.Series>
+                    <lvc:PieSeries Title="{Binding ChartTitle}" Values="{Binding ChartData}" DataLabels="True"
+                               LabelPoint="{Binding PointLabel}"/>
+                </lvc:PieChart.Series>-->
             </lvc:PieChart>
         </Grid>
 
