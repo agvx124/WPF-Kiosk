@@ -7,11 +7,19 @@
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="lvc:PieSeries" x:Key="PieSeriesStyle">
+            <Setter Property="FontFamily" Value="NanumGothic"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </UserControl.Resources>
+ 
     <Grid Background="White">
         <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Margin="10, 5, 0, 0" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
 
         <Grid Margin="0, 100, 0, 0">
-            <lvc:PieChart LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
+            <lvc:PieChart x:Name="pieChart1" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
                 <!--<lvc:PieChart.Series>
                     <lvc:PieSeries Title="{Binding ChartTitle}" Values="{Binding ChartData}" DataLabels="True"
                                LabelPoint="{Binding PointLabel}"/>

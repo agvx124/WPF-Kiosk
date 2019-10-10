@@ -68,6 +68,7 @@ namespace WPF_Kiosk
         private void TbStats_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             StatControl.Visibility = Visibility.Visible;
+            StatControl.Load();
         }
 
         private void LvSeat_Selected(object sender, RoutedEventArgs e)

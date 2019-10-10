@@ -32,21 +32,11 @@ namespace WPF_Kiosk.Control
         {
             InitializeComponent();
 
-            SeriesCollection = new SeriesCollection();
-            foreach (OrderLog orderLog in App.OrderLogData)
-            {
-                PieSeries newItem = new PieSeries();
-                newItem.Title = orderLog.food.Name;
-                newItem.Values = new ChartValues<int>() { orderLog.Count };
-
-                SeriesCollection.Add(newItem);
-            }
-
 
             PointLabel = chartPoint =>
                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
 
-            DataContext = this;            
+            DataContext = this;         
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -65,6 +55,29 @@ namespace WPF_Kiosk.Control
             selectedSeries.PushOut = 8;
         }
 
+        public void Load()
+        {
+            pieChart1.Series = new SeriesCollection();
+
+            foreach (OrderLog orderLog in App.OrderLogData)
+            {
+                if (orderLog.Count != 0)
+                {
+                    PieSeries newItem = new PieSeries();
+                    newItem.Title = orderLog.food.Name;
+                    newItem.Values = new ChartValues<int>() { orderLog.Count };
+                    newItem.DataLabels = true;
+                    newItem.LabelPoint = PointLabel;
+
+                    newItem.Style = Resources["PieSeriesStyle"] as Style;
+
+                    pieChart1.Series.Add(newItem);
+                }
+                
+            }
+
+            DataContext = this;
+        }
         //private void setMenuChart()
         //{
         //    string[] arr = new string[] { "바나나우유", "딸기우유", "초코우유", "수박우유" };
