@@ -6,25 +6,56 @@
              xmlns:local="clr-namespace:WPF_Kiosk"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontFamily="NanumGothic">
 
     <UserControl.Resources>
         <Style TargetType="lvc:PieSeries" x:Key="PieSeriesStyle">
             <Setter Property="FontFamily" Value="NanumGothic"/>
-            <Setter Property="FontSize" Value="14"/>
         </Style>
     </UserControl.Resources>
  
     <Grid Background="White">
         <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Margin="10, 5, 0, 0" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
 
-        <Grid Margin="0, 100, 0, 0">
-            <lvc:PieChart x:Name="pieChart1" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
-                <!--<lvc:PieChart.Series>
-                    <lvc:PieSeries Title="{Binding ChartTitle}" Values="{Binding ChartData}" DataLabels="True"
-                               LabelPoint="{Binding PointLabel}"/>
-                </lvc:PieChart.Series>-->
-            </lvc:PieChart>
+        <Grid Margin="0, 100, 0, 0" >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0">
+                <TextBlock Text="메뉴별 판매량" FontSize="14"/>
+                <lvc:PieChart Margin="20" x:Name="amountMenuChart" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
+                    
+                </lvc:PieChart>
+            </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="1">
+                <TextBlock Text="메뉴별 매출액" FontSize="14"/>
+                <lvc:PieChart Margin="20" x:Name="salesMenuChart" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
+                    
+                </lvc:PieChart>
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="0">
+                <TextBlock Text="카테고리별 판매량" FontSize="14"/>
+                <lvc:PieChart x:Name="amountCategoryChart" Margin="20" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
+                    
+                </lvc:PieChart>
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="1">
+                <TextBlock Text="카테고리별 매출액" FontSize="14"/>
+                <lvc:PieChart x:Name="salesCategoryChart" Margin="20" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
+                    
+                </lvc:PieChart>
+            </Grid>
         </Grid>
 
     </Grid>
