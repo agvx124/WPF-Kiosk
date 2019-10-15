@@ -70,27 +70,23 @@
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1">
-            <StackPanel>
-                <TextBlock x:Name="tbTableId" Text="Table" FontSize="24" Foreground="Black"/>
-                <StackPanel Orientation="Horizontal">
-                    <ListView>
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="상품명" Width="500"/>
-                                <GridViewColumn Header="수량" Width="300"/>
-                                <GridViewColumn Header="금액" Width="350"/>
-                            </GridView>
-                        </ListView.View>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                    <TextBlock Text="ㅁㅁㅁㅁㅁ"/>
-                </StackPanel>
-
-            </StackPanel>
+            <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="tbTableId" Grid.Row="0" Text="Table" FontSize="24" Foreground="Black"/>
+                    <Grid Grid.Row="1">
+                        <ListView x:Name="lvOrder">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="상품명" DisplayMemberBinding="{Binding Name}" Width="500"/>
+                                    <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Count}" Width="300"/>
+                                    <GridViewColumn Header="금액" DisplayMemberBinding="{Binding Price}" Width="350"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+            <TextBlock Text="ㅁㅁㅁㅁㅁ"/>
         </Grid>
 
         

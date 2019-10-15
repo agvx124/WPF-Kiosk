@@ -29,10 +29,9 @@ namespace WPF_Kiosk.Control
             get => _seatName;
             set
             {
-                Console.WriteLine(value);
                 _seatName = value;
                 // set을 했을시 컨트롤에 추가
-                Seat seat = App.SeatData.listSeat[_seatName-1];
+                //Seat seat = App.SeatData.listSeat[_seatName-1];
 
                 tbTableId.Text = _seatName.ToString() + "번 테이블";
             }
@@ -56,8 +55,13 @@ namespace WPF_Kiosk.Control
         private void OrderCtrl_Loaded(object sender, RoutedEventArgs e)
         {
             App.FoodData.Load();
+            App.SeatData.Load();
 #if true
             lvFood.ItemsSource = App.FoodData.listFood;
+            if (SeatName != 0)
+            {
+                lvOrder.ItemsSource = GetSeat().FoodList;
+            }
 #else
 
 #endif
@@ -111,6 +115,30 @@ namespace WPF_Kiosk.Control
             Food food = lvFood.SelectedItems[0] as Food;
             AddSelectedImage(food);
             AddSelectedMenu(food);
+            SetLvOrderItem();
+        }
+
+        private void SetLvOrderItem()
+        {
+            foreach (Food item in GetSeat().FoodList)
+            {
+                Console.WriteLine("item.Name: " + item.Name);
+                Console.WriteLine("item.Count: " + item.Count);
+            }
+            lvOrder.ItemsSource = null;
+            lvOrder.ItemsSource = GetSeat().FoodList;
+        }
+
+        private Seat GetSeat()
+        {
+            //Console.WriteLine(SeatName);
+            Seat seat = App.SeatData.listSeat.Find(x => x.Name == SeatName);
+
+            if (seat == null)
+            {
+                Console.WriteLine("seat is null");
+            }
+            return seat;
         }
 
         private void AddSelectedImage(Food food)
@@ -122,17 +150,23 @@ namespace WPF_Kiosk.Control
             selectedImage.Source = bi;
         }
 
+        //seat.foodList에 추가도 하고 orderlogData count ++함.
+        //food.count를 증가시키면 다른 쪽에서 food
         private void AddSelectedMenu(Food food)
         {
-            Seat seat = App.SeatData.listSeat.Find(x => x.Id == SeatName);
-            if (seat.FoodList.Exists(x => x.Name == food.Name))
+            List<Food> foodList = GetSeat().FoodList;
+            if (foodList.Exists(x => x.Name == food.Name))
             {
-                seat.FoodList.Find(x => x.Name == food.Name).Count++;
-                App.OrderLogData.Find(x => x.food.Name == food.Name).Count++;
+                Food findFood = foodList.Find(x => x.Name == food.Name);
+                findFood.Count++;
             }
-            seat.FoodList.Add(food);
+            else
+            {
+                food.Count = 1;
+                foodList.Add(food);
+            }
 
-            Console.WriteLine(App.OrderLogData.Find(x => x.food.Name == food.Name).Count);
+            App.OrderLogData.Find(x => x.food.Name == food.Name).Count++;
         }
     }
 }
