@@ -176,8 +176,19 @@ namespace WPF_Kiosk.Control
                 orderFood.Count = 1;
                 seat.FoodList.Add(orderFood);
             }
-
+            getTotalPrice();
             App.OrderLogData.Find(x => x.food.Name == food.Name).Count++;
+        }
+
+        private void getTotalPrice()
+        {
+            int total = 0;
+            foreach (Food food in seat.FoodList)
+            {
+                total += food.Count * food.Price;
+            }
+
+            tbTotalPrice.Text = total.ToString();
         }
     }
 }
