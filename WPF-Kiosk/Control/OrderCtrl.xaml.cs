@@ -33,12 +33,12 @@ namespace WPF_Kiosk.Control
                 _seatName = value;
                 // set을 했을시 컨트롤에 추가
                 seat = App.SeatData.listSeat[_seatName-1];
-                Console.WriteLine("table: " + value);
-                foreach (Food item in seat.FoodList)
-                {
-                    Console.WriteLine("item.Name: " + item.Name);
-                    Console.WriteLine("item.Count: " + item.Count);
-                }
+                //Console.WriteLine("table: " + value);
+                //foreach (Food item in seat.FoodList)
+                //{
+                //    Console.WriteLine("item.Name: " + item.Name);
+                //    Console.WriteLine("item.Count: " + item.Count);
+                //}
 
                 tbTableId.Text = _seatName.ToString() + "번 테이블";
             }
@@ -65,10 +65,6 @@ namespace WPF_Kiosk.Control
             App.SeatData.Load();
 #if true
             lvFood.ItemsSource = App.FoodData.listFood;
-            if (SeatName != 0)
-            {
-                lvOrder.ItemsSource = seat.FoodList;
-            }
 #else
 
 #endif
@@ -119,13 +115,14 @@ namespace WPF_Kiosk.Control
 
         private void LvFood_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            Console.WriteLine(lvFood.SelectedItems[0] as Food);
             Food food = lvFood.SelectedItems[0] as Food;
             AddSelectedImage(food);
             AddSelectedMenu(food);
             SetLvOrderItem();
         }
 
-        private void SetLvOrderItem()
+        public void SetLvOrderItem()
         {
             //foreach (Food item in seat.FoodList)
             //{
@@ -176,6 +173,7 @@ namespace WPF_Kiosk.Control
                 orderFood.Count = 1;
                 seat.FoodList.Add(orderFood);
             }
+            //orderLogData는 결제 할때 orderFood, count를 가져오는 식으로 만들기
             getTotalPrice();
             App.OrderLogData.Find(x => x.food.Name == food.Name).Count++;
         }
