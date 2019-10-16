@@ -124,26 +124,12 @@ namespace WPF_Kiosk.Control
 
         public void SetLvOrderItem()
         {
-            //foreach (Food item in seat.FoodList)
-            //{
-            //    Console.WriteLine("item.Name: " + item.Name);
-            //    Console.WriteLine("item.Count: " + item.Count);
-            //}
             lvOrder.ItemsSource = null;
+            tbTotalPrice.Text = "0";
+
+            tbTotalPrice.Text = getTotalPrice().ToString();
             lvOrder.ItemsSource = seat.FoodList;
         }
-
-        //private Seat GetSeat()
-        //{
-        //    //Console.WriteLine(SeatName);
-        //    Seat seat = App.SeatData.listSeat.Find(x => x.Name == SeatName);
-
-        //    if (seat == null)
-        //    {
-        //        Console.WriteLine("seat is null");
-        //    }
-        //    return seat;
-        //}
 
         private void AddSelectedImage(Food food)
         {
@@ -174,11 +160,11 @@ namespace WPF_Kiosk.Control
                 seat.FoodList.Add(orderFood);
             }
             //orderLogData는 결제 할때 orderFood, count를 가져오는 식으로 만들기
-            getTotalPrice();
+            tbTotalPrice.Text = getTotalPrice().ToString();
             App.OrderLogData.Find(x => x.food.Name == food.Name).Count++;
         }
 
-        private void getTotalPrice()
+        private int getTotalPrice()
         {
             int total = 0;
             foreach (Food food in seat.FoodList)
@@ -186,7 +172,42 @@ namespace WPF_Kiosk.Control
                 total += food.Count * food.Price;
             }
 
-            tbTotalPrice.Text = total.ToString();
+            return total;
+        }
+
+        private void BtnPayment_Click(object sender, RoutedEventArgs e)
+        {
+            if (seat.FoodList.Count == 0)
+            {
+                MessageBox.Show("결제할 내용이 없습니다.", "빽다방");
+                return;
+            }
+
+            String payFoodList = "";
+            String payment = "";
+            foreach (Food food in seat.FoodList)
+            {
+                payFoodList += food.Name + " x" + food.Count.ToString() + "\n";
+            }
+            if (rbCash.IsChecked == true)
+            {
+                payment = "현금";
+            }
+            else
+            {
+                payment = "카드";
+            }
+
+            if (MessageBox.Show("결제 메뉴\n" + payFoodList + "\n결제 방식\n" + payment +"\n\n총 결제 금액 - " + getTotalPrice().ToString() + "원", "빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                MessageBox.Show("결제 성공하셨습니다!", "빽다방");
+                seat.FoodList.Clear();
+                this.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MessageBox.Show("결제를 취소하였습니다", "빽다방");
+            }
         }
     }
 }

@@ -80,7 +80,8 @@ namespace WPF_Kiosk
 
             SeatCtrl seat = (lvSeat.SelectedItem as SeatCtrl);
             OrderControl.SeatName = seat.GetSeat();
-            
+            OrderControl.SetLvOrderItem();
+
             OrderControl.Visibility = Visibility.Visible;
 
             lvSeat.SelectedIndex = -1;
