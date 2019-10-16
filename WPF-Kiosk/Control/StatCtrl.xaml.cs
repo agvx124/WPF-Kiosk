@@ -57,64 +57,61 @@ namespace WPF_Kiosk.Control
 
         public void Load()
         {
-            int[] categoryCount = new int[Enum.GetValues(typeof(Common.eCategory)).Length];
+            Dictionary<Common.eCategory, int> categoryCount = new Dictionary<Common.eCategory, int>();
+            Dictionary<Common.eCategory, int> categorySales = new Dictionary<Common.eCategory, int>();
 
             amountMenuChart.Series = new SeriesCollection();
             salesMenuChart.Series = new SeriesCollection();
             amountCategoryChart.Series = new SeriesCollection();
             salesCategoryChart.Series = new SeriesCollection();
 
-            App.OrderLogData.Where(x => x.food.Category == Common.eCategory.Coffee).Count();
-
+            // 메뉴별 통계
             foreach (OrderLog orderLog in App.OrderLogData)
             {
                 if (orderLog.Count != 0)
                 {
-                    PieSeries newItem = setPieSeriesItem(orderLog);
+                    PieSeries amountMenuItem = setPieSeriesItem(orderLog);
+                    PieSeries salesMenuItem = setPieSeriesItem(orderLog);
 
-                    newItem.Values = new ChartValues<int>() { orderLog.Count };
+                    amountMenuItem.Values = new ChartValues<int>() { orderLog.Count };
+                    salesMenuItem.Values = new ChartValues<int>() { orderLog.Count * orderLog.food.Price };
 
-                    amountMenuChart.Series.Add(newItem);
+                    amountMenuChart.Series.Add(amountMenuItem);
+                    salesMenuChart.Series.Add(salesMenuItem);
                 }
-
-                if (orderLog.Count != 0)
-                {
-                    PieSeries newItem = setPieSeriesItem(orderLog);
-
-                    newItem.Values = new ChartValues<int>() { orderLog.Count * orderLog.food.Price };
-
-                    salesMenuChart.Series.Add(newItem);
-                }
-
-                //switch (orderLog.food.Category)
-                //{
-                //    case Common.eCategory.Coffee:
-                //        categoryCount[0] += orderLog.Count;
-                //    case Common.eCategory.Desert:
-                //        categoryCount[1] += orderLog.Count;
-                //}
-
-                //for (int i = 0; i < orderLog.Count; i++)
-                //{
-                //    if (orderLog.food.Category == Common.eCategory.Coffee)
-                //    {
-                //        categoryCount[0] += orderLog.food.Count;
-                //    }
-                //    else if (orderLog.food.Category == Common.eCategory.Desert)
-                //    {
-                //        categoryCount[1] += orderLog.food.Count;
-                //    }
-                //    else if (orderLog.food.Category == Common.eCategory.Drink)
-                //    {
-                //        categoryCount[2] += orderLog.food.Count;
-                //    }
-                //    else if (orderLog.food.Category == Common.eCategory.SignatureMenu)
-                //    {
-                //        categoryCount[3] += orderLog.food.Count;
-                //    }
-                //}
             }
 
+            // 카테고리별 데이터
+            for (int i = 0; i < App.OrderLogData.Count; i++)
+            {
+                if (categoryCount.ContainsKey(App.OrderLogData[i].food.Category) == true)
+                {
+                    categoryCount[App.OrderLogData[i].food.Category] += App.OrderLogData[i].Count;
+                    categorySales[App.OrderLogData[i].food.Category] += App.OrderLogData[i].Count * App.OrderLogData[i].food.Price;
+                }
+                else
+                {
+                    categoryCount.Add(App.OrderLogData[i].food.Category, App.OrderLogData[i].Count);
+                    categorySales.Add(App.OrderLogData[i].food.Category, App.OrderLogData[i].Count * App.OrderLogData[i].food.Price);
+                }
+            }
+
+
+            // 카테고리별 통계
+            foreach (KeyValuePair<Common.eCategory, int> pair in categoryCount)
+            {
+                if (pair.Value != 0)
+                {
+                    PieSeries amountCategoryItem = setPieSeriesItem(pair);
+                    PieSeries salesCategoryItem = setPieSeriesItem(pair);
+
+                    amountCategoryItem.Values = new ChartValues<int>() { categoryCount[pair.Key] };
+                    salesCategoryItem.Values = new ChartValues<int>() { categorySales[pair.Key] };
+
+                    amountCategoryChart.Series.Add(amountCategoryItem);
+                    salesCategoryChart.Series.Add(salesCategoryItem);
+                }
+            }
             DataContext = this;
         }
 
@@ -122,6 +119,18 @@ namespace WPF_Kiosk.Control
         {
             PieSeries newItem = new PieSeries();
             newItem.Title = orderLog.food.Name;
+
+            newItem.DataLabels = true;
+            newItem.LabelPoint = PointLabel;
+            newItem.Style = Resources["PieSeriesStyle"] as Style;
+
+            return newItem;
+        }
+
+        private PieSeries setPieSeriesItem(KeyValuePair<Common.eCategory, int> pair)
+        {
+            PieSeries newItem = new PieSeries();
+            newItem.Title = pair.Key.ToString();
 
             newItem.DataLabels = true;
             newItem.LabelPoint = PointLabel;

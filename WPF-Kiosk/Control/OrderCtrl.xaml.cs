@@ -161,7 +161,7 @@ namespace WPF_Kiosk.Control
             }
             //orderLogData는 결제 할때 orderFood, count를 가져오는 식으로 만들기
             tbTotalPrice.Text = getTotalPrice().ToString();
-            App.OrderLogData.Find(x => x.food.Name == food.Name).Count++;
+            //App.OrderLogData.Find(x => x.food.Name == food.Name).Count++;
         }
 
         private int getTotalPrice()
@@ -200,6 +200,10 @@ namespace WPF_Kiosk.Control
 
             if (MessageBox.Show("결제 메뉴\n" + payFoodList + "\n결제 방식\n" + payment +"\n\n총 결제 금액 - " + getTotalPrice().ToString() + "원", "빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                foreach (Food food in seat.FoodList)
+                {
+                    App.OrderLogData.Find(x => x.food.Name == food.Name).Count += food.Count;
+                }
                 MessageBox.Show("결제 성공하셨습니다!", "빽다방");
                 seat.FoodList.Clear();
                 this.Visibility = Visibility.Collapsed;
