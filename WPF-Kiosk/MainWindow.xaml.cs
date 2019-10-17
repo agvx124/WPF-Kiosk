@@ -86,5 +86,13 @@ namespace WPF_Kiosk
 
             lvSeat.SelectedIndex = -1;
         }
+
+        private void TbExitProgram_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (MessageBox.Show("프로그램을 종료하시겠습니까?", "빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                System.Windows.Application.Current.Shutdown();
+            }
+        }
     }
 }

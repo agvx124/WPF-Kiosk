@@ -16,7 +16,10 @@
 
         <TextBlock MouseLeftButtonDown="TbStats_MouseLeftButtonDown" FontSize="20" x:Name="tbStats" Margin="200, 15, 0, 0" TextWrapping="Wrap" Text="통계" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
+        <TextBlock MouseLeftButtonDown="TbExitProgram_MouseLeftButtonDown" FontSize="20" x:Name="tbExitProgram" Margin="270, 15, 0, 0" TextWrapping="Wrap" Text="프로그램 종료" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
         <TextBlock FontSize="20" x:Name="tbCurrentTime" Margin="10, 15, 10, 0" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        
 
         <ListView x:Name="lvSeat" SelectionChanged="LvSeat_Selected"
                   Margin="0, 60, 0, 0" Background="White" BorderBrush="MidnightBlue">

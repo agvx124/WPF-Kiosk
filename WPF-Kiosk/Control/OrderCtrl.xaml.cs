@@ -213,5 +213,65 @@ namespace WPF_Kiosk.Control
                 MessageBox.Show("결제를 취소하였습니다", "빽다방");
             }
         }
+
+        private void ImgPlus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Food food = lvFood.SelectedItems[0] as Food;
+
+                if (seat.FoodList.Exists(x => x.Name == food.Name))
+                {
+                    seat.FoodList.Find(x => x.Name == food.Name).Count++;
+                }
+                else
+                {
+                    Food orderFood = new Food();
+                    orderFood.Name = food.Name;
+                    orderFood.ImagePath = food.ImagePath;
+                    orderFood.Price = food.Price;
+                    orderFood.Category = food.Category;
+                    orderFood.Count = 1;
+                    seat.FoodList.Add(orderFood);
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("선택된 아이템이 없습니다.");
+            }
+            finally
+            {
+                tbTotalPrice.Text = getTotalPrice().ToString();
+                SetLvOrderItem();
+            }
+        }
+
+        private void ImgMinus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //Food food = (lvFood.SelectedItem as Food);
+            //food.Count--;
+            try
+            {
+                Food food = lvFood.SelectedItems[0] as Food;
+               
+                if (seat.FoodList.Find(x => x.Name == food.Name).Count != 0)
+                {
+                    seat.FoodList.Find(x => x.Name == food.Name).Count--;
+                }
+                else
+                {
+                    MessageBox.Show("0미만으로 수량을 줄일 수 없습니다.");
+                }
+            } catch (NullReferenceException ex)
+            {
+                MessageBox.Show("프로그램 오류");
+            }
+            finally
+            {
+                tbTotalPrice.Text = getTotalPrice().ToString();
+                SetLvOrderItem();
+            }
+            
+        }
     }
 }
