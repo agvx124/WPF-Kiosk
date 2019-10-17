@@ -40,6 +40,7 @@
         </ListView>
         <control:StatCtrl x:Name="StatControl" Visibility="Collapsed"/>
         <control:OrderCtrl x:Name="OrderControl" Visibility="Collapsed"/>
+        <control:SeatCtrl x:Name="SeatControl" Visibility="Collapsed"/>
     </Grid>
 
 

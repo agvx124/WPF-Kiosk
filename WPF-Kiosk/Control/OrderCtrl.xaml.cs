@@ -22,6 +22,9 @@ namespace WPF_Kiosk.Control
     /// </summary>
     public partial class OrderCtrl : UserControl
     {
+        public delegate void backHandler();
+        public event backHandler OnBack;
+
         private int _seatName;
         private string _selectedImage;
         private Seat seat;
@@ -72,6 +75,10 @@ namespace WPF_Kiosk.Control
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if(OnBack!= null)
+            {
+                OnBack();
+            }
             this.Visibility = Visibility.Collapsed;
         }
 
@@ -115,7 +122,6 @@ namespace WPF_Kiosk.Control
 
         private void LvFood_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine(lvFood.SelectedItems[0] as Food);
             Food food = lvFood.SelectedItems[0] as Food;
             AddSelectedImage(food);
             AddSelectedMenu(food);

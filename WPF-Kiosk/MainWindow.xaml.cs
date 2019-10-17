@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,23 @@ namespace WPF_Kiosk
             InitializeComponent();
 
             this.Loaded += MainWindow_Loaded;
+            OrderControl.OnBack += OrderCtrl_OnBack1;
+        }
+
+        private void OrderCtrl_OnBack1()
+        {
+            int seatNum = OrderControl.SeatName;
+            Console.WriteLine(seatNum);
+            Seat seat = App.SeatData.listSeat.Find(x => x.Name == seatNum);
+            //SeatControl.lvOrder.ItemsSource = seat.FoodList;
+            ICollectionView view = CollectionViewSource.GetDefaultView(seat.FoodList);
+            view.Refresh();
+            //List<Food> myCollection = new List<Food>();
+            //Food food = new Food();
+            //food.Name = "오마에와";
+            //food.Count = 123;
+            //myCollection.Add(food);
+            //SeatControl.lvOrder.ItemsSource = myCollection;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -51,10 +69,10 @@ namespace WPF_Kiosk
 
         private void Timer_tick(object sender, EventArgs e)
         {
-            App.Current.Dispatcher.Invoke(() => 
+            App.Current.Dispatcher.Invoke(() =>
             {
                 tbCurrentTime.Text = DateTime.Now.ToString();
-            });            
+            });
         }
 
         private void SetTimer()
@@ -80,6 +98,7 @@ namespace WPF_Kiosk
 
             SeatCtrl seat = (lvSeat.SelectedItem as SeatCtrl);
             OrderControl.SeatName = seat.GetSeat();
+
             OrderControl.SetLvOrderItem();
 
             OrderControl.Visibility = Visibility.Visible;
