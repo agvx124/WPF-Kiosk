@@ -79,7 +79,18 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <TextBlock x:Name="tbTableId" Text="Table" FontSize="24" Foreground="Black"/>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock x:Name="tbTableId" Text="Table" FontSize="24" Foreground="Black"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Viewbox Height="80" Width="80" Margin="10">
+                            <RadioButton Content="현금" IsChecked="True" x:Name="rbCash" GroupName="Payment"/>
+                        </Viewbox>
+                        <Viewbox Height="80" Width="80">
+                            <RadioButton Content="카드" IsChecked="False" x:Name="rbCard" GroupName="Payment"/>
+                        </Viewbox>
+                    </StackPanel>
+                    <Button x:Name="btnPayment" Background="AliceBlue" Width="200" Height="50" Click="BtnPayment_Click">결제하기</Button>
+                </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="결제 금액 - " FontSize="24" Foreground="Black"/>
                     <TextBlock Text="0" x:Name="tbTotalPrice" FontSize="24" Foreground="Black"/>
