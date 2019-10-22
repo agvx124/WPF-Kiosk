@@ -187,10 +187,13 @@
     <Resource Include="Assets\SignatureMenu\카라멜빽스치노.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\plus_button.png" />
+    <Resource Include="Assets\Icon\plus_button.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\minus_button.png" />
+    <Resource Include="Assets\Icon\minus_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,20 +12,21 @@ namespace WPF_Kiosk
     {
         bool isLoaded = false;
         public List<Seat> listSeat = null;
+        readonly int NUMBER_OF_TABLE = 6; 
 
         public void Load()
         {
             if (isLoaded) return;
 
-            listSeat = new List<Seat>()
+            listSeat = new List<Seat>();
+            for (int i = 0; i < NUMBER_OF_TABLE; i++)
             {
-                new Seat() { Id = 0, Name = 1},
-                new Seat() { Id = 1, Name = 2},
-                new Seat() { Id = 2, Name = 3},
-                new Seat() { Id = 3, Name = 4},
-                new Seat() { Id = 4, Name = 5},
-                new Seat() { Id = 5, Name = 6},
-            };
+                Seat seat = new Seat();
+                seat.Id = i;
+                seat.Name = i + 1;
+
+                listSeat.Add(seat);
+            }
 
             isLoaded = true;
         }

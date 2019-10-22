@@ -99,8 +99,8 @@
                         <TextBlock Text="원" Margin="0, 0, 20, 0" FontSize="24" Foreground="Black"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                        <Image x:Name="imgPlus" Source="pack://application:,,,/Assets/plus_button.png" Width="50" Margin="20" MouseLeftButtonDown="ImgPlus_MouseLeftButtonDown"/>
-                        <Image x:Name="imgMinus" Source="pack://application:,,,/Assets/minus_button.png" Width="50" Margin="20" MouseLeftButtonDown="ImgMinus_MouseLeftButtonDown"/>
+                        <Image x:Name="imgPlus" Source="pack://application:,,,/Assets/Icon/plus_button.png" Width="50" Margin="20" MouseLeftButtonDown="ImgPlus_MouseLeftButtonDown"/>
+                        <Image x:Name="imgMinus" Source="pack://application:,,,/Assets/Icon/minus_button.png" Width="50" Margin="20" MouseLeftButtonDown="ImgMinus_MouseLeftButtonDown"/>
                     </StackPanel>
                     
                 </StackPanel>

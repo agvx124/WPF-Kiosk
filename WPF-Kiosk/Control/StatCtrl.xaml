@@ -16,7 +16,7 @@
     </UserControl.Resources>
  
     <Grid Background="White">
-        <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Margin="10, 5, 0, 0" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
+        <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Margin="10, 5, 0, 0" Source="pack://application:,,,/Assets/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
 
         <Grid Margin="0, 100, 0, 0" >
 

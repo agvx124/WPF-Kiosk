@@ -21,12 +21,6 @@ namespace WPF_Kiosk.Control
     /// </summary>
     public partial class SeatCtrl : UserControl
     {
-
-        //private void setLvOrder()
-        //{
-        //    lvOrder.ItemsSource = App.SeatData.listSeat.Find(x => x.Name == GetSeat()).FoodList;
-        //}
-
         public SeatCtrl()
         {
             InitializeComponent();

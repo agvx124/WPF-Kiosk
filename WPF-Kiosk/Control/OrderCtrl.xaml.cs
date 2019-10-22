@@ -36,12 +36,6 @@ namespace WPF_Kiosk.Control
                 _seatName = value;
                 // set을 했을시 컨트롤에 추가
                 seat = App.SeatData.listSeat[_seatName-1];
-                //Console.WriteLine("table: " + value);
-                //foreach (Food item in seat.FoodList)
-                //{
-                //    Console.WriteLine("item.Name: " + item.Name);
-                //    Console.WriteLine("item.Count: " + item.Count);
-                //}
 
                 tbTableId.Text = _seatName.ToString() + "번 테이블";
             }
@@ -122,7 +116,7 @@ namespace WPF_Kiosk.Control
 
         private void LvFood_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Food food = lvFood.SelectedItems[0] as Food;
+            Food food = lvFood.SelectedItem as Food;
             AddSelectedImage(food);
             AddSelectedMenu(food);
             SetLvOrderItem();
@@ -150,7 +144,6 @@ namespace WPF_Kiosk.Control
         //food.count를 증가시키면 다른 쪽에서 food
         private void AddSelectedMenu(Food food)
         {
-            //List<Food> foodList = seat.FoodList;
             if (seat.FoodList.Exists(x => x.Name == food.Name))
             {
                 seat.FoodList.Find(x => x.Name == food.Name).Count++;
@@ -167,7 +160,6 @@ namespace WPF_Kiosk.Control
             }
             //orderLogData는 결제 할때 orderFood, count를 가져오는 식으로 만들기
             tbTotalPrice.Text = getTotalPrice().ToString();
-            //App.OrderLogData.Find(x => x.food.Name == food.Name).Count++;
         }
 
         private int getTotalPrice()
@@ -189,12 +181,15 @@ namespace WPF_Kiosk.Control
                 return;
             }
 
+            // 메뉴 출력
             String payFoodList = "";
             String payment = "";
             foreach (Food food in seat.FoodList)
             {
                 payFoodList += food.Name + " x" + food.Count.ToString() + "\n";
             }
+
+            // 현금/카드 라디오 버튼 체크 확인
             if (rbCash.IsChecked == true)
             {
                 payment = "현금";
@@ -203,14 +198,17 @@ namespace WPF_Kiosk.Control
             {
                 payment = "카드";
             }
-
+            
+            // 메세지 박스 결제 메뉴, 결제 방식, 결제 금액 출력 후 YES일시 true NO일시 false
             if (MessageBox.Show("결제 메뉴\n" + payFoodList + "\n결제 방식\n" + payment +"\n\n총 결제 금액 - " + getTotalPrice().ToString() + "원", "빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                // 통계 위한 orderlog 데이터 추가
                 foreach (Food food in seat.FoodList)
                 {
                     App.OrderLogData.Find(x => x.food.Name == food.Name).Count += food.Count;
                 }
                 MessageBox.Show("결제 성공하셨습니다!", "빽다방");
+                // 결제 성공시 메뉴 clear, 메인화면으로 돌아가기
                 seat.FoodList.Clear();
                 this.Visibility = Visibility.Collapsed;
             }
@@ -224,41 +222,25 @@ namespace WPF_Kiosk.Control
         {
             try
             {
-                Food food = lvFood.SelectedItems[0] as Food;
-
-                if (seat.FoodList.Exists(x => x.Name == food.Name))
-                {
-                    seat.FoodList.Find(x => x.Name == food.Name).Count++;
-                }
-                else
-                {
-                    Food orderFood = new Food();
-                    orderFood.Name = food.Name;
-                    orderFood.ImagePath = food.ImagePath;
-                    orderFood.Price = food.Price;
-                    orderFood.Category = food.Category;
-                    orderFood.Count = 1;
-                    seat.FoodList.Add(orderFood);
-                }
+                Food food = lvFood.SelectedItem as Food;
+                
+                AddSelectedMenu(food);
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
                 MessageBox.Show("선택된 아이템이 없습니다.");
             }
             finally
             {
-                tbTotalPrice.Text = getTotalPrice().ToString();
                 SetLvOrderItem();
             }
         }
 
         private void ImgMinus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //Food food = (lvFood.SelectedItem as Food);
-            //food.Count--;
             try
             {
-                Food food = lvFood.SelectedItems[0] as Food;
+                Food food = lvFood.SelectedItem as Food;
                
                 if (seat.FoodList.Find(x => x.Name == food.Name).Count != 0)
                 {
@@ -268,13 +250,13 @@ namespace WPF_Kiosk.Control
                 {
                     MessageBox.Show("0미만으로 수량을 줄일 수 없습니다.");
                 }
-            } catch (NullReferenceException ex)
+            }
+            catch (NullReferenceException)
             {
                 MessageBox.Show("프로그램 오류");
             }
             finally
             {
-                tbTotalPrice.Text = getTotalPrice().ToString();
                 SetLvOrderItem();
             }
             

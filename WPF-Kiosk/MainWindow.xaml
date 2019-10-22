@@ -12,7 +12,7 @@
         FontFamily="NanumGothic">
     
     <Grid>
-        <Image Margin="10, 5, 0, 0" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
+        <Image Margin="10, 5, 0, 0" Source="pack://application:,,,/Assets/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
 
         <TextBlock MouseLeftButtonDown="TbStats_MouseLeftButtonDown" FontSize="20" x:Name="tbStats" Margin="200, 15, 0, 0" TextWrapping="Wrap" Text="통계" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 

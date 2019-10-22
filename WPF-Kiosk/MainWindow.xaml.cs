@@ -30,23 +30,17 @@ namespace WPF_Kiosk
             InitializeComponent();
 
             this.Loaded += MainWindow_Loaded;
-            OrderControl.OnBack += OrderCtrl_OnBack1;
+            OrderControl.OnBack += OrderCtrl_OnBack;
         }
 
-        private void OrderCtrl_OnBack1()
+        private void OrderCtrl_OnBack()
         {
             int seatNum = OrderControl.SeatName;
-            Console.WriteLine(seatNum);
+            
             Seat seat = App.SeatData.listSeat.Find(x => x.Name == seatNum);
-            //SeatControl.lvOrder.ItemsSource = seat.FoodList;
+            
             ICollectionView view = CollectionViewSource.GetDefaultView(seat.FoodList);
             view.Refresh();
-            //List<Food> myCollection = new List<Food>();
-            //Food food = new Food();
-            //food.Name = "오마에와";
-            //food.Count = 123;
-            //myCollection.Add(food);
-            //SeatControl.lvOrder.ItemsSource = myCollection;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -69,12 +63,10 @@ namespace WPF_Kiosk
 
         private void Timer_tick(object sender, EventArgs e)
         {
-            App.Current.Dispatcher.Invoke(() =>
-            {
-                tbCurrentTime.Text = DateTime.Now.ToString();
-            });
+            tbCurrentTime.Text = DateTime.Now.ToString();
         }
 
+        // 시간 표시 함수
         private void SetTimer()
         {
             DispatcherTimer timer = new DispatcherTimer();
@@ -83,12 +75,14 @@ namespace WPF_Kiosk
             timer.Start();
         }
 
+        // 통계 창 표시 함수
         private void TbStats_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             StatControl.Visibility = Visibility.Visible;
             StatControl.Load();
         }
 
+        // 선택했던 Seat 를 다시 선택하지 못하는 경우 때문에 만든 함수
         private void LvSeat_Selected(object sender, RoutedEventArgs e)
         {
             if (lvSeat.SelectedItem == null)
@@ -106,6 +100,7 @@ namespace WPF_Kiosk
             lvSeat.SelectedIndex = -1;
         }
 
+        // 프로그램 종료 함수
         private void TbExitProgram_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (MessageBox.Show("프로그램을 종료하시겠습니까?", "빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)

@@ -81,7 +81,7 @@ namespace WPF_Kiosk.Control
                 }
             }
 
-            // 카테고리별 데이터
+            // 카테고리별 데이터 구하기
             for (int i = 0; i < App.OrderLogData.Count; i++)
             {
                 if (categoryCount.ContainsKey(App.OrderLogData[i].food.Category) == true)
