@@ -81,12 +81,12 @@
             <Grid Grid.Row="0">
                 <StackPanel Orientation="Vertical">
                     <TextBlock x:Name="tbTableId" Text="Table" FontSize="24" Foreground="Black"/>
-                    
+                    <TextBlock x:Name="orderTime" Text="최근 주문 시간: " FontSize="15"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Viewbox Height="80" Width="80" Margin="10">
+                        <Viewbox Height="40" Width="80" Margin="10">
                             <RadioButton Content="현금" IsChecked="True" x:Name="rbCash" GroupName="Payment"/>
                         </Viewbox>
-                        <Viewbox Height="80" Width="80">
+                        <Viewbox Height="40" Width="80">
                             <RadioButton Content="카드" IsChecked="False" x:Name="rbCard" GroupName="Payment"/>
                         </Viewbox>
                     </StackPanel>

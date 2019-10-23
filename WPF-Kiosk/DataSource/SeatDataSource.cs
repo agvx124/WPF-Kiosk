@@ -12,6 +12,7 @@ namespace WPF_Kiosk
     {
         bool isLoaded = false;
         public List<Seat> listSeat = null;
+        public string orderTime = "X";
         readonly int NUMBER_OF_TABLE = 6; 
 
         public void Load()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,7 +120,14 @@ namespace WPF_Kiosk.Control
             Food food = lvFood.SelectedItem as Food;
             AddSelectedImage(food);
             AddSelectedMenu(food);
+            setOrderTimeToNow();
             SetLvOrderItem();
+        }
+
+        private void setOrderTimeToNow()
+        {
+            App.SeatData.orderTime = DateTime.Now.ToString("yyyy.MM.dd-HH:mm:ss");
+            orderTime.Text = "최근 주문 시간: " + App.SeatData.orderTime;
         }
 
         public void SetLvOrderItem()
@@ -210,6 +218,10 @@ namespace WPF_Kiosk.Control
                 MessageBox.Show("결제 성공하셨습니다!", "빽다방");
                 // 결제 성공시 메뉴 clear, 메인화면으로 돌아가기
                 seat.FoodList.Clear();
+
+                ICollectionView view = CollectionViewSource.GetDefaultView(seat.FoodList);
+                view.Refresh();
+
                 this.Visibility = Visibility.Collapsed;
             }
             else
