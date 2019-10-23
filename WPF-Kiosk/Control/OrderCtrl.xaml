@@ -33,7 +33,7 @@
         <Grid Grid.Column="0">
             <StackPanel>
                 <ListBox x:Name="MenuList" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-                    <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="http://paikdabang.com/wp-content/themes/paikdabang/assets/images/logo.png" Width="140"/>
+                    <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="pack://application:,,,/Assets/logo.png" Width="140"/>
                     <ListBoxItem Content="전체" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="커피" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="음료" Style="{StaticResource MenuStyle}"/>
@@ -90,7 +90,11 @@
                             <RadioButton Content="카드" IsChecked="False" x:Name="rbCard" GroupName="Payment"/>
                         </Viewbox>
                     </StackPanel>
-                    <Button x:Name="btnPayment" Background="AliceBlue" Width="200" Height="50" Click="BtnPayment_Click">결제하기</Button>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="btnPayment" Background="AliceBlue" Width="200" Height="50" Click="BtnPayment_Click">결제하기</Button>
+                        <Button x:Name="btnCancel" Background="AliceBlue" Width="200" Height="50" Click="btnCancel_Click">결제 취소하기</Button>
+                    </StackPanel>
+                    
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Right">
                     <StackPanel Orientation="Horizontal">
@@ -102,6 +106,8 @@
                         <Image x:Name="imgPlus" Source="pack://application:,,,/Assets/Icon/plus_button.png" Width="50" Margin="20" MouseLeftButtonDown="ImgPlus_MouseLeftButtonDown"/>
                         <Image x:Name="imgMinus" Source="pack://application:,,,/Assets/Icon/minus_button.png" Width="50" Margin="20" MouseLeftButtonDown="ImgMinus_MouseLeftButtonDown"/>
                     </StackPanel>
+
+                    <Button x:Name="btnCancelByMenu" Background="AliceBlue" Width="100" Height="50" Click="btnCancelByMenu_Click">메뉴취소</Button>
                     
                 </StackPanel>
                 

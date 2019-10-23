@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -45,9 +46,15 @@ namespace WPF_Kiosk
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            SplashScreen splashScreen = new SplashScreen("Assets/logo.png");
+            splashScreen.Show(true);
+            Thread.Sleep(500);
+
             App.SeatData.Load();
+
             AddListSeatItems();
             SetTimer();
+            splashScreen.Show(false);
         }
 
         private void AddListSeatItems()

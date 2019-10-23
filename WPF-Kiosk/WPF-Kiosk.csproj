@@ -193,7 +193,7 @@
     <Resource Include="Assets\Icon\minus_button.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\logo.png" />
+    <SplashScreen Include="Assets\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
