@@ -273,5 +273,15 @@ namespace WPF_Kiosk.Control
             }
             
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCancelByMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
