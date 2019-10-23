@@ -254,14 +254,30 @@ namespace WPF_Kiosk.Control
             {
                 Food food = lvFood.SelectedItem as Food;
                
-                if (seat.FoodList.Find(x => x.Name == food.Name).Count != 0)
+                //Count != 0 일 때 실행하는 것이 맞지만 253라인의 어떠한 이유로 어거지로 해결
+                if (seat.FoodList.Find(x => x.Name == food.Name).Count > 1)
                 {
                     seat.FoodList.Find(x => x.Name == food.Name).Count--;
                 }
-                else
+                
+                //상품개수가 0개일 때 리스트가 삭제됨 (어떠한 오류로 0보다 작을 때 사라진다..)
+                //우선 Count의 값이 1이면 삭제하도록 짜둠
+                else if (seat.FoodList.Find(x => x.Name == food.Name).Count == 1)
+                {
+                    //FindIndex로 어떤 리스트를 지울지 찾아준다
+                    var i = seat.FoodList.FindIndex(x => x.Name == food.Name);
+                    //RemoveAt 함수로 FindIndex로 찾은 리스트를 지워준다
+                    seat.FoodList.RemoveAt(i);
+                }
+                
+                //어쩌피 삭제가 되기 때문에 이 부분은 필요가 없을 것 같다...
+/*                else
                 {
                     MessageBox.Show("0미만으로 수량을 줄일 수 없습니다.");
-                }
+
+                    var i = seat.FoodList.FindIndex(x => x.Name == food.Name);
+                    seat.FoodList.RemoveAt(i);
+                }*/
             }
             catch (NullReferenceException)
             {
@@ -274,14 +290,38 @@ namespace WPF_Kiosk.Control
             
         }
 
+        //전체 메뉴 삭제 기능
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            //FoodList 비워주기
+            seat.FoodList.Clear();
+            //이건 뭐하는 코드?..
+            ICollectionView view = CollectionViewSource.GetDefaultView(seat.FoodList);
+            //다시 보여주기
+            view.Refresh();
         }
 
         private void btnCancelByMenu_Click(object sender, RoutedEventArgs e)
         {
 
+
+            try
+            {
+                Food food = lvFood.SelectedItem as Food;
+                var i = seat.FoodList.FindIndex(x => x.Name == food.Name);
+                //RemoveAt 함수로 FindIndex로 찾은 리스트를 지워준다
+            
+                seat.FoodList.RemoveAt(i);
+            }
+            
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("아이템을 선택을 해야죠 멍청아");
+            }
+            finally
+            {
+                SetLvOrderItem();
+            }
         }
     }
 }
