@@ -48,7 +48,7 @@ namespace WPF_Kiosk
         {
             SplashScreen splashScreen = new SplashScreen("Assets/logo.png");
             splashScreen.Show(true);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
 
             App.SeatData.Load();
 

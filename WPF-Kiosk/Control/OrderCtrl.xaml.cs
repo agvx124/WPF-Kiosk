@@ -237,7 +237,7 @@ namespace WPF_Kiosk.Control
             }
             catch (NullReferenceException)
             {
-                MessageBox.Show("선택된 아이템이 없습니다.");
+                MessageBox.Show("선택된 아이템이 없습니다.", "빽다방");
             }
             finally
             {
@@ -282,16 +282,15 @@ namespace WPF_Kiosk.Control
         {
             if (MessageBox.Show("정말 테이블의 주문 내용을 전부 삭제하시겠습니까?","빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                //FoodList 비워주기
                 seat.FoodList.Clear();
                 
-                ICollectionView view = CollectionViewSource.GetDefaultView(seat.FoodList);
-                view.Refresh();
-                MessageBox.Show("삭제되었습니다.");
+                SetLvOrderItem();
+                
+                MessageBox.Show("삭제되었습니다.", "빽다방");
             }
             else
             {
-                MessageBox.Show("취소되었습니다.");
+                MessageBox.Show("취소되었습니다.", "빽다방");
             }
         }
 
@@ -307,7 +306,7 @@ namespace WPF_Kiosk.Control
             
             catch (ArgumentOutOfRangeException)
             {
-                MessageBox.Show("음식을 선택하지 않았습니다");
+                MessageBox.Show("음식을 선택하지 않았습니다", "빽다방");
             }
             finally
             {
@@ -315,6 +314,8 @@ namespace WPF_Kiosk.Control
             }
         }
 
+        // 리스트에 따른 Food 리턴해주는 함수
+        // 선택되는 곳이 lvFood일수도 lvOrder일수도 있어서
         private Food setFoodbyList()
         {
             Food food = lvOrder.SelectedItem as Food;

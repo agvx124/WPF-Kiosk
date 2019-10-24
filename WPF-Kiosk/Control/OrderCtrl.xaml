@@ -33,7 +33,7 @@
         <Grid Grid.Column="0">
             <StackPanel>
                 <ListBox x:Name="MenuList" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-                    <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="pack://application:,,,/Assets/logo.png" Width="140"/>
+                    <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="pack://application:,,,/Assets/logo.png" Width="370"/>
                     <ListBoxItem Content="전체" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="커피" Style="{StaticResource MenuStyle}"/>
                     <ListBoxItem Content="음료" Style="{StaticResource MenuStyle}"/>
@@ -81,7 +81,7 @@
             <Grid Grid.Row="0">
                 <StackPanel Orientation="Vertical">
                     <TextBlock x:Name="tbTableId" Text="Table" FontSize="24" Foreground="Black"/>
-                    <TextBlock x:Name="orderTime" Text="최근 주문 시간: " FontSize="15"/>
+                    <TextBlock x:Name="orderTime" Text="최근 주문 시간: " FontSize="15" Margin="0, 10, 0, 0"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Viewbox Height="40" Width="80" Margin="10">
                             <RadioButton Content="현금" IsChecked="True" x:Name="rbCash" GroupName="Payment"/>
@@ -92,7 +92,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button x:Name="btnPayment" Background="AliceBlue" Width="200" Height="50" Click="BtnPayment_Click">결제하기</Button>
-                        <Button x:Name="btnCancel" Background="AliceBlue" Width="200" Height="50" Click="btnCancel_Click">결제 취소하기</Button>
+                        <Button x:Name="btnCancel" Background="AliceBlue" Width="200" Height="50" Click="btnCancel_Click">주문 내역 전체 삭제</Button>
                     </StackPanel>
                     
                 </StackPanel>
@@ -107,7 +107,7 @@
                         <Image x:Name="imgMinus" Source="pack://application:,,,/Assets/Icon/minus_button.png" Width="50" Margin="20" MouseLeftButtonDown="ImgMinus_MouseLeftButtonDown"/>
                     </StackPanel>
 
-                    <Button x:Name="btnCancelByMenu" Background="AliceBlue" Width="100" Height="50" Click="btnCancelByMenu_Click">메뉴취소</Button>
+                    <Button x:Name="btnCancelByMenu" Background="AliceBlue" Width="100" Height="50" Click="btnCancelByMenu_Click">메뉴별 삭제</Button>
                     
                 </StackPanel>
                 

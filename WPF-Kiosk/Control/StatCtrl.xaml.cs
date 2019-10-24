@@ -55,8 +55,11 @@ namespace WPF_Kiosk.Control
             selectedSeries.PushOut = 8;
         }
 
+        // 차트 로드
         public void Load()
         {
+            int todaySales = 0;
+
             Dictionary<Common.eCategory, int> categoryCount = new Dictionary<Common.eCategory, int>();
             Dictionary<Common.eCategory, int> categorySales = new Dictionary<Common.eCategory, int>();
 
@@ -75,11 +78,14 @@ namespace WPF_Kiosk.Control
 
                     amountMenuItem.Values = new ChartValues<int>() { orderLog.Count };
                     salesMenuItem.Values = new ChartValues<int>() { orderLog.Count * orderLog.food.Price };
+                    todaySales += orderLog.Count * orderLog.food.Price;
 
                     amountMenuChart.Series.Add(amountMenuItem);
                     salesMenuChart.Series.Add(salesMenuItem);
                 }
             }
+
+            tbTodaySales.Text = "하루 매출액 : " + todaySales.ToString() + "원";
 
             // 카테고리별 데이터 구하기
             for (int i = 0; i < App.OrderLogData.Count; i++)

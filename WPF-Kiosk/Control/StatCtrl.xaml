@@ -18,6 +18,8 @@
     <Grid Background="White">
         <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Margin="10, 5, 0, 0" Source="pack://application:,,,/Assets/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
 
+        <TextBlock x:Name="tbTodaySales" Text="하루 매출액 : " FontSize="20" HorizontalAlignment="Center" Margin="0, 50, 0, 0"></TextBlock>
+
         <Grid Margin="0, 100, 0, 0" >
 
             <Grid.ColumnDefinitions>
