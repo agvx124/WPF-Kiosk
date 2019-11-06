@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control\ChattingCtrl.xaml.cs">
+      <DependentUpon>ChattingCtrl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\OrderCtrl.xaml.cs">
       <DependentUpon>OrderCtrl.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,10 @@
     <Compile Include="Control\StatCtrl.xaml.cs">
       <DependentUpon>StatCtrl.xaml</DependentUpon>
     </Compile>
+    <Page Include="Control\ChattingCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\OrderCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

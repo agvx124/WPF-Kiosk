@@ -18,6 +18,8 @@
 
         <TextBlock MouseLeftButtonDown="TbExitProgram_MouseLeftButtonDown" FontSize="20" x:Name="tbExitProgram" Margin="270, 15, 0, 0" TextWrapping="Wrap" Text="프로그램 종료" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
+        <TextBlock MouseLeftButtonDown="TbChatting_MouseLeftButtonDown" FontSize="20" x:Name="tbChatting" Margin="420 15, 0, 0" TextWrapping="Wrap" Text="채팅"/>
+
         <TextBlock FontSize="20" x:Name="tbCurrentTime" Margin="10, 15, 10, 0" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Top" HorizontalAlignment="Right"/>
         
 
@@ -41,6 +43,7 @@
         <control:StatCtrl x:Name="StatControl" Visibility="Collapsed"/>
         <control:OrderCtrl x:Name="OrderControl" Visibility="Collapsed"/>
         <control:SeatCtrl x:Name="SeatControl" Visibility="Collapsed"/>
+        <control:ChattingCtrl x:Name="ChattingControl" Visibility="Collapsed"/>
     </Grid>
 
 
