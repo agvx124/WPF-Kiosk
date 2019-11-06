@@ -41,7 +41,6 @@
         <control:StatCtrl x:Name="StatControl" Visibility="Collapsed"/>
         <control:OrderCtrl x:Name="OrderControl" Visibility="Collapsed"/>
         <control:SeatCtrl x:Name="SeatControl" Visibility="Collapsed"/>
+        <control:LoginCtrl x:Name="LoginCtrl" Visibility="Visible"/>
     </Grid>
-
-
 </Window>

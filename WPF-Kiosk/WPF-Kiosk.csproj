@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control\LoginCtrl.xaml.cs">
+      <DependentUpon>LoginCtrl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\OrderCtrl.xaml.cs">
       <DependentUpon>OrderCtrl.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,7 @@
     <Compile Include="Control\StatCtrl.xaml.cs">
       <DependentUpon>StatCtrl.xaml</DependentUpon>
     </Compile>
+    <Page Include="Control\LoginCtrl.xaml" />
     <Page Include="Control\OrderCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

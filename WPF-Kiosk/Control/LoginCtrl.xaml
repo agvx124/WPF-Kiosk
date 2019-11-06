@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="WPF_Kiosk.Control.LoginCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WPF_Kiosk.Control"
+             >
+    <Grid>
+        <Border Background="#dedede">
+            <Border Margin="30" CornerRadius="10, 10, 10, 10" Background="#eeeeee">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Margin="10, 5, 0, 0" Source="pack://application:,,,/Assets/logo.png"  VerticalAlignment="Top" Width="140" Height="50"/>
+                    <StackPanel Margin="0, 30" Orientation="Horizontal">
+                        <TextBlock Text="id : " Width="70" FontSize="15" VerticalAlignment="Center"/>
+                        <TextBox Width="320" Height="45"/>
+                    </StackPanel>
+                    <StackPanel Margin="0, 30" Orientation="Horizontal">
+                        <TextBlock FontSize="15" Text="Password : " VerticalAlignment="Center"/>
+                        <PasswordBox Width="320" Height="45"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Button Background="Yellow" Width="350" Height="40">로그인</Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+    </Grid>
+</UserControl>
