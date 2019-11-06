@@ -115,5 +115,10 @@ namespace WPF_Kiosk
                 System.Windows.Application.Current.Shutdown();
             }
         }
+
+        private void TbChatting_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ChattingControl.Visibility = Visibility.Visible;
+        }
     }
 }
