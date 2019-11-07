@@ -9,18 +9,18 @@
         <Border Background="#dedede">
             <Border Margin="30" CornerRadius="10, 10, 10, 10" Background="#eeeeee">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Margin="10, 5, 0, 0" Source="pack://application:,,,/Assets/logo.png"  VerticalAlignment="Top" Width="300" Height="80"/>
-                    <StackPanel Margin="0, 30" Orientation="Horizontal">
+                    <Image Margin="20" Source="pack://application:,,,/Assets/logo.png"  VerticalAlignment="Top" Width="300" Height="80"/>
+                    <StackPanel Margin="20" Orientation="Horizontal">
                         <TextBlock Text="아이디" Width="70" FontSize="14" VerticalAlignment="Center" TextAlignment="Center"/>
-                        <TextBox Width="320" Height="25" FontSize="14" VerticalContentAlignment="Center" />
+                        <TextBox Width="320" Height="35" FontSize="14" VerticalContentAlignment="Center" x:Name="tbId"/>
                     </StackPanel>
-                    <StackPanel Margin="0, 30" Orientation="Horizontal">
+                    <StackPanel Margin="20" Orientation="Horizontal">
                         <TextBlock FontSize="14" Width="70" Text="비밀번호" VerticalAlignment="Center" TextAlignment="Center"/>
-                        <PasswordBox Width="320" Height="35" FontSize="14" HorizontalAlignment="Center"/>
+                        <PasswordBox Width="320" Height="35" FontSize="14" VerticalContentAlignment="Center" x:Name="tbPassword"/>
                     </StackPanel>
-                    <StackPanel>
-                        <Button Background="Yellow" Width="350" Height="40">로그인</Button>
-                    </StackPanel>
+                    
+                    <Button x:Name="btnLogin" Background="MidnightBlue" Width="400" Height="40" Foreground="White" FontSize="14" FontWeight="DemiBold" Margin="20" Click="BtnLogin_Click">로그인</Button>
+                    
                 </StackPanel>
             </Border>
         </Border>
