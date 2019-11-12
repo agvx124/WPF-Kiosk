@@ -26,7 +26,7 @@ namespace WPF_Kiosk.Control
         public ChattingCtrl()
         {
             InitializeComponent();
-            AsynchronousClient.StartClient();
+            AsynchronousClient.CreateSocket();
         }
     }
 
@@ -44,7 +44,7 @@ namespace WPF_Kiosk.Control
 
     public class AsynchronousClient
     {
-        private const int port = 8000;
+        private const int port = 80;
 
         private static ManualResetEvent connectDone =
                 new ManualResetEvent(false);
@@ -53,38 +53,101 @@ namespace WPF_Kiosk.Control
         private static ManualResetEvent receiveDone =
                 new ManualResetEvent(false);
 
-        private static String response = String.Empty;
+        private static Socket client = null;
 
-        public static void StartClient()
+        //private static String response = String.Empty;
+
+        //public static void StartClient()
+        //{
+            //try
+            //{
+                //IPAddress ipAddress = IPAddress.Parse("10.80.163.138");
+                //IPEndPoint remoteEp = new IPEndPoint(ipAddress, port);
+
+                //// TCP/IP Socket 생성
+                //Socket client = new Socket(ipAddress.AddressFamily,
+                //    SocketType.Stream, ProtocolType.Tcp);
+
+                //// 원거리 endpoint 연결
+                //client.BeginConnect(remoteEp,
+                //    new AsyncCallback(ConnectCallback), client);
+                //connectDone.WaitOne();
+
+                //// 시험적으로 데이터 보내봄.
+                //Send(client, "@2109");
+                //sendDone.WaitOne();
+
+                //// 데이터 받아옴
+                //Receive(client);
+                //receiveDone.WaitOne();
+
+                //Send(client, "@2109#오늘 판매량:25000");
+                //sendDone.WaitOne();
+
+                //// 데이터 받아옴
+                //Receive(client);
+                //receiveDone.WaitOne();
+
+                //client.Shutdown(SocketShutdown.Both);
+                //client.Close();
+            //} catch (Exception e)
+            //{
+            //    Console.WriteLine(e.ToString());
+            //}
+        //}
+        public static void CreateSocket()
         {
             try
             {
-                IPHostEntry ipHostInfo = Dns.GetHostEntry("10.80.163.138");
-                IPAddress ipAddress = ipHostInfo.AddressList[0];
+                IPAddress ipAddress = IPAddress.Parse("10.80.163.138");
                 IPEndPoint remoteEp = new IPEndPoint(ipAddress, port);
 
                 // TCP/IP Socket 생성
-                Socket client = new Socket(ipAddress.AddressFamily,
+                client = new Socket(ipAddress.AddressFamily,
                     SocketType.Stream, ProtocolType.Tcp);
 
                 // 원거리 endpoint 연결
                 client.BeginConnect(remoteEp,
                     new AsyncCallback(ConnectCallback), client);
-
-                // 시험적으로 데이터 보내봄.
-                Send(client, "@2109");
-                sendDone.WaitOne();
-
-                // 데이터 받아옴
-                Receive(client);
-                receiveDone.WaitOne();
-
-                //받아온 데이터 write
-                Console.WriteLine("Response received : {0}", response);
-
-                client.Shutdown(SocketShutdown.Both);
-                client.Close();
+                connectDone.WaitOne();
             } catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        public static void Send(String data)
+        {
+            //데이터 byte형으로 변환
+            byte[] byteData = Encoding.UTF8.GetBytes(data);
+
+            //데이터 전송 시작
+            try
+            {
+                client.BeginSend(byteData, 0, byteData.Length, 0,
+                new AsyncCallback(SendCallback), client);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+        }
+
+        private static void SendCallback(IAsyncResult ar)
+        {
+            try
+            {
+                Socket client = (Socket)ar.AsyncState;
+
+
+                int byteSent = client.EndSend(ar);
+                Console.WriteLine("Sent {0} bytes to server.", byteSent);
+
+                // Signal that all bytes have been sent.
+                sendDone.Set();
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
@@ -138,61 +201,31 @@ namespace WPF_Kiosk.Control
                 Socket client = state.workSocket;
 
                 //원거리 기기에서 온 데이터 읽음
-                int bytesRead = client.EndReceive(ar);
-
-                if(bytesRead > 0)
+                if (client.Connected)
                 {
-                    //더 많은 데이터가 있을 수도 있으므로 지금까지 받아온 데이터 저장.
-                    state.sb.Append(Encoding.UTF8.GetString(state.buffer, 0, bytesRead));
+                    int bytesRead = client.EndReceive(ar);
 
-                    //나머지 데이터 받아옴
-                    client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
-                        new AsyncCallback(ReceiveCallback), state);
-                } else
-                {
-                    //모든 데이터 도착, response안으로 넣음.
-                    if (state.sb.Length > 1)
+                    if (bytesRead > 0)
                     {
-                        response = state.sb.ToString();
-                    }
+                        //더 많은 데이터가 있을 수도 있으므로 지금까지 받아온 데이터 저장.
+                        state.sb.Append(Encoding.UTF8.GetString(state.buffer, 0, bytesRead));
 
+                        //나머지 데이터 받아옴
+                        client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+                            new AsyncCallback(ReceiveCallback), state);
+                    }
+                    else
+                    {
+                        //서버 종료 상태
+                        //모든 데이터 도착, response안으로 넣음.
+                        //if (state.sb.Length > 1)
+                        //{
+                        //    response = state.sb.ToString();
+                        //}
+                    }
                     receiveDone.Set();
                 }
-            } catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
-
-        private static void Send(Socket client, String data)
-        {
-            //데이터 byte형으로 변환
-            byte[] byteData = Encoding.UTF8.GetBytes(data);
-
-            //데이터 전송 시작
-            try
-            {
-                client.BeginSend(byteData, 0, byteData.Length, 0,
-                new AsyncCallback(SendCallback), client);
-            } catch(Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-            
-        }
-
-        private static void SendCallback(IAsyncResult ar)
-        {
-            try
-            {
-                Socket client = (Socket)ar.AsyncState;
-
-
-                int byteSent = client.EndSend(ar);
-                Console.WriteLine("Sent {0} bytes to server.", byteSent);
-
-                // Signal that all bytes have been sent.
-                sendDone.Set();
+          
             } catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
