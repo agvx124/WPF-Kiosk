@@ -181,4 +181,3 @@ namespace WPF_Kiosk.Network
         }
     }
 }
-

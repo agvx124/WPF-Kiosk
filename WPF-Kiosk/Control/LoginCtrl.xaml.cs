@@ -14,18 +14,21 @@ namespace WPF_Kiosk.Control
         }
 
         // 로그인 버튼 클릭시 수행하는 이벤트
-        // Restful Api 서버 사용
+        // 개인 서버 (restful api)와 소켓 서버 통신 두개 한꺼번에 연결
         // 뭔가 부족 리팩토링 해야함
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            BaseApiNetwork baseApiNetwork = new BaseApiNetwork();
+            ApiNetwork apiNetwork = new ApiNetwork();
+            AsynchronousClient.CreateSocket();
 
-            JObject jObject = JObject.Parse(baseApiNetwork.PostLogin(tbId.Text, tbPassword.Password.ToString()));
+            JObject jObject = JObject.Parse(apiNetwork.PostLogin(tbId.Text, tbPassword.Password.ToString()));
             int status = Convert.ToInt32(jObject["status"].ToString());
             string message = jObject["message"].ToString();
 
             if (status == 200)
             {
+                AsynchronousClient.Send("@" + tbId.Text);
+
                 var data = jObject["data"];
                 string name = data["name"].ToString();
 
