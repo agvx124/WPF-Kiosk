@@ -32,6 +32,8 @@ namespace WPF_Kiosk.Control
                 var data = jObject["data"];
                 string name = data["name"].ToString();
 
+                App.LogedID = tbId.Text;
+
                 MessageBox.Show("안녕하세요! " + name + "님", "로그인 성공!");
                 this.Visibility = Visibility.Hidden;
             }

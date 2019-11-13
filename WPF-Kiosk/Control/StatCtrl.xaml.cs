@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_Kiosk.Model;
+using WPF_Kiosk.Network;
 
 namespace WPF_Kiosk.Control
 {
@@ -24,6 +25,7 @@ namespace WPF_Kiosk.Control
     public partial class StatCtrl : UserControl
     {
 
+        private int todaySales = 0;
         public Func<ChartPoint, string> PointLabel { get; set; }
 
         public SeriesCollection SeriesCollection { get; set; }
@@ -58,8 +60,6 @@ namespace WPF_Kiosk.Control
         // 차트 로드
         public void Load()
         {
-            int todaySales = 0;
-
             Dictionary<Common.eCategory, int> categoryCount = new Dictionary<Common.eCategory, int>();
             Dictionary<Common.eCategory, int> categorySales = new Dictionary<Common.eCategory, int>();
 
@@ -147,7 +147,9 @@ namespace WPF_Kiosk.Control
 
         private void BtnTodaySalesSend_Click(object sender, RoutedEventArgs e)
         {
-
+            var id = App.LogedID;
+            AsynchronousClient.Send("@" + id + "#오늘 판매량:" + todaySales.ToString()+ "원");
+            /*AsynchronousClient.Send("@" + id + "#오늘 판매량: 9999999원");*/
         }
     }
 }
