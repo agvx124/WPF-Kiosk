@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_Kiosk.Common;
 using WPF_Kiosk.Model;
+using WPF_Kiosk.Network;
 
 namespace WPF_Kiosk.Control
 {
@@ -212,6 +213,8 @@ namespace WPF_Kiosk.Control
                 {
                     App.OrderLogData.Find(x => x.food.Name == food.Name).Count += food.Count;
                 }
+                var id = App.LogedID;
+                AsynchronousClient.Send("@" + id + "#"+getTotalPrice().ToString()+"원이 결제되었습니다.");
                 MessageBox.Show("결제 성공하셨습니다!", "빽다방");
                 // 결제 성공시 메뉴 clear, 메인화면으로 돌아가기
                 seat.FoodList.Clear();
