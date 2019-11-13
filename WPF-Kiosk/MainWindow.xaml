@@ -18,6 +18,10 @@
 
         <TextBlock MouseLeftButtonDown="TbExitProgram_MouseLeftButtonDown" FontSize="20" x:Name="tbExitProgram" Margin="270, 15, 0, 0" TextWrapping="Wrap" Text="프로그램 종료" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
+        <TextBlock MouseLeftButtonDown="TbConnectedServer_MouseLeftButtonDown" FontSize="20" x:Name="tbConnectedServer" Margin="420 15, 0, 0" TextWrapping="Wrap" Text="서버 연결" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        
+        <TextBlock MouseLeftButtonDown="TbExitServer_MouseLeftButtonDown" FontSize="20" x:Name="tbExitServer" Margin="540 15, 0, 0" TextWrapping="Wrap" Text="서버 종료" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        
         <TextBlock FontSize="20" x:Name="tbCurrentTime" Margin="10, 15, 10, 0" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Top" HorizontalAlignment="Right"/>
         
 

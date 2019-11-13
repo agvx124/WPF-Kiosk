@@ -79,6 +79,31 @@ namespace WPF_Kiosk.Network
 
         }
 
+        public static bool IsConnected()
+        {
+            try
+            {
+                return client.Connected;
+            } catch(Exception e)
+            {
+                return false;
+            }
+
+        }
+
+        public static void UnConnected()
+        {
+            try
+            {
+                client.Shutdown(SocketShutdown.Both);
+                client.Close();
+            } catch(Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            
+        }
+
         private static void SendCallback(IAsyncResult ar)
         {
             try

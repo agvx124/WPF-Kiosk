@@ -112,9 +112,33 @@ namespace WPF_Kiosk
         {
             if (MessageBox.Show("프로그램을 종료하시겠습니까?", "빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                System.Windows.Application.Current.Shutdown();
+                System.Windows.Application.Current.Shutdown();  
             }
         }
 
+        private void TbExitServer_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Network.AsynchronousClient.IsConnected())
+            {
+                Network.AsynchronousClient.UnConnected();
+            }
+            else
+            {
+                MessageBox.Show("이미 연결되어 있지 않습니다.");
+            }
+            
+        }
+
+        private void TbConnectedServer_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!Network.AsynchronousClient.IsConnected())
+            {
+                Network.AsynchronousClient.CreateSocket();
+            }
+            else
+            {
+                MessageBox.Show("이미 연결되어 있습니다.");
+            }
+        }
     }
 }
