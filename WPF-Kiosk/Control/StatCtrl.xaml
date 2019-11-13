@@ -20,7 +20,7 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock x:Name="tbTodaySales" Text="하루 매출액 : " FontSize="20" HorizontalAlignment="Center" Margin="0, 50, 0, 0"></TextBlock>
-            <Button x:Name="btnTodaySalesSend" Margin="20, 35, 0, 0" Height="50" VerticalAlignment="Top">하루 매출액 서버 전송하기</Button>
+            <Button x:Name="btnTodaySalesSend" Click="BtnTodaySalesSend_Click" Margin="20, 35, 0, 0" Height="50" VerticalAlignment="Top">하루 매출액 서버 전송하기</Button>
         </StackPanel>
         
 

@@ -144,5 +144,10 @@ namespace WPF_Kiosk.Control
 
             return newItem;
         }
+
+        private void BtnTodaySalesSend_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
