@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WPF_Kiosk.Network
 {
@@ -42,7 +43,7 @@ namespace WPF_Kiosk.Network
         {
             try
             {
-                IPAddress ipAddress = IPAddress.Parse("10.80.163.138");
+                IPAddress ipAddress = IPAddress.Parse("10.80.163.132");
                 IPEndPoint remoteEp = new IPEndPoint(ipAddress, port);
 
                 // TCP/IP Socket 생성
@@ -56,7 +57,7 @@ namespace WPF_Kiosk.Network
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show(e.ToString());
             }
         }
 
@@ -73,7 +74,7 @@ namespace WPF_Kiosk.Network
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show(e.ToString());
             }
 
         }
@@ -93,7 +94,7 @@ namespace WPF_Kiosk.Network
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show(e.ToString());
             }
         }
 
@@ -116,7 +117,7 @@ namespace WPF_Kiosk.Network
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show(e.ToString());
             }
         }
 
@@ -133,7 +134,7 @@ namespace WPF_Kiosk.Network
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show(e.ToString());
             }
         }
 
@@ -175,9 +176,9 @@ namespace WPF_Kiosk.Network
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                MessageBox.Show(e.ToString());
             }
         }
     }
 }
-}
+

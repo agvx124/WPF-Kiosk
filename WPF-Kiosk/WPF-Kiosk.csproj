@@ -73,9 +73,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Control\ChattingCtrl.xaml.cs">
-      <DependentUpon>ChattingCtrl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Control\LoginCtrl.xaml.cs">
       <DependentUpon>LoginCtrl.xaml</DependentUpon>
     </Compile>
@@ -87,10 +84,6 @@
     <Compile Include="Control\StatCtrl.xaml.cs">
       <DependentUpon>StatCtrl.xaml</DependentUpon>
     </Compile>
-    <Page Include="Control\ChattingCtrl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Control\LoginCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
