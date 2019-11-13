@@ -43,7 +43,7 @@ namespace WPF_Kiosk.Network
         {
             try
             {
-                IPAddress ipAddress = IPAddress.Parse("10.80.163.132");
+                IPAddress ipAddress = IPAddress.Parse("10.80.163.138");
                 IPEndPoint remoteEp = new IPEndPoint(ipAddress, port);
 
                 // TCP/IP Socket 생성
