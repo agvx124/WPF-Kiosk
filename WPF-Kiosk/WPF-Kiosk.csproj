@@ -129,7 +129,8 @@
     <Compile Include="Model\OrderLog.cs" />
     <Compile Include="Model\Seat.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Network\BaseApiNetwork.cs" />
+    <Compile Include="Network\AsynchronousClient.cs" />
+    <Compile Include="Network\ApiNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

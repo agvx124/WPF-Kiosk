@@ -11,13 +11,13 @@ using WPF_Kiosk.Model;
 
 namespace WPF_Kiosk.Network
 {
-    public class BaseApiNetwork
+    public class ApiNetwork
     {
         readonly string HOST = "http://10.80.163.88:3000/v1/";
         RestClient client;
         RestRequest request;
 
-        public BaseApiNetwork()
+        public ApiNetwork()
         {
             client = new RestClient(HOST);
         }
