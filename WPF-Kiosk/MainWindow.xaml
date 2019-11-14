@@ -11,18 +11,27 @@
         Title="빽다방 키오스크"
         FontFamily="NanumGothic">
     
+    
     <Grid>
         <Image Margin="10, 5, 0, 0" Source="pack://application:,,,/Assets/logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="50"/>
 
-        <TextBlock MouseLeftButtonDown="TbStats_MouseLeftButtonDown" FontSize="20" x:Name="tbStats" Margin="200, 15, 0, 0" TextWrapping="Wrap" Text="통계" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="200, 15, 0, 0">
+            <TextBlock MouseLeftButtonDown="TbStats_MouseLeftButtonDown" Margin="0, 0, 30, 0" FontSize="20" x:Name="tbStats" Text="통계"/>
 
-        <TextBlock MouseLeftButtonDown="TbExitProgram_MouseLeftButtonDown" FontSize="20" x:Name="tbExitProgram" Margin="270, 15, 0, 0" TextWrapping="Wrap" Text="프로그램 종료" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBlock MouseLeftButtonDown="TbExitProgram_MouseLeftButtonDown" Margin="0, 0, 30, 0" FontSize="20" x:Name="tbExitProgram" Text="프로그램 종료"/>
 
-        <TextBlock MouseLeftButtonDown="TbConnectedServer_MouseLeftButtonDown" FontSize="20" x:Name="tbConnectedServer" Margin="420 15, 0, 0" TextWrapping="Wrap" Text="서버 연결" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBlock MouseLeftButtonDown="TbConnectedServer_MouseLeftButtonDown" Margin="0, 0, 30, 0" FontSize="20" x:Name="tbConnectedServer" Text="서버 연결"/>
+
+            <TextBlock MouseLeftButtonDown="TbExitServer_MouseLeftButtonDown" Margin="0, 0, 30, 0" FontSize="20" x:Name="tbExitServer" Text="서버 끊기"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10, 15, 10, 0">
+            <TextBlock Text="최근 접속시간 - None" x:Name="tbServerConnectionTime" FontSize="20" Margin="0, 0, 30, 0"/>
+
+            <TextBlock FontSize="20" x:Name="tbCurrentTime" TextWrapping="Wrap" Text="Loading..."/>
+        </StackPanel>
         
-        <TextBlock MouseLeftButtonDown="TbExitServer_MouseLeftButtonDown" FontSize="20" x:Name="tbExitServer" Margin="540 15, 0, 0" TextWrapping="Wrap" Text="서버 종료" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         
-        <TextBlock FontSize="20" x:Name="tbCurrentTime" Margin="10, 15, 10, 0" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Top" HorizontalAlignment="Right"/>
         
 
         <ListView x:Name="lvSeat" SelectionChanged="LvSeat_Selected"

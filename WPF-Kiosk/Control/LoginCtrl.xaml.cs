@@ -8,6 +8,9 @@ namespace WPF_Kiosk.Control
 {
     public partial class LoginCtrl : UserControl
     {
+        public delegate void LoginClickEvent();
+        public event LoginClickEvent OnLoginClick;
+
         public LoginCtrl()
         {
             InitializeComponent();
@@ -33,6 +36,10 @@ namespace WPF_Kiosk.Control
                 string name = data["name"].ToString();
 
                 App.LogedID = tbId.Text;
+                if (OnLoginClick != null)
+                {
+                    OnLoginClick();
+                }
 
                 MessageBox.Show("안녕하세요! " + name + "님", "로그인 성공!");
                 this.Visibility = Visibility.Hidden;

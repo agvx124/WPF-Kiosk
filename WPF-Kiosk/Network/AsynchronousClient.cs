@@ -80,6 +80,7 @@ namespace WPF_Kiosk.Network
 
         }
 
+        // 소켓 서버와 연결되어 있는지 확인하는 함수
         public static bool IsConnected()
         {
             try
@@ -92,6 +93,7 @@ namespace WPF_Kiosk.Network
 
         }
 
+        // 소켓 서버와 연결을 끊는 함수
         public static void UnConnected()
         {
             try

@@ -26,12 +26,23 @@ namespace WPF_Kiosk
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private string serverConnectionTime = null;
+
         public MainWindow()
         {
             InitializeComponent();
 
             this.Loaded += MainWindow_Loaded;
+            LoginControl.OnLoginClick += LoginControl_OnLoginClick;
             OrderControl.OnBack += OrderCtrl_OnBack;
+        }
+
+        private void LoginControl_OnLoginClick()
+        {
+            setTbServerConeectionTime();
+            //App.ServerConnectionTime = DateTime.Now.ToString();
+            //tbServerConnectionTime.Text = "최근 접속 시간 " + App.ServerConnectionTime;
         }
 
         private void OrderCtrl_OnBack()
@@ -54,6 +65,7 @@ namespace WPF_Kiosk
 
             AddListSeatItems();
             SetTimer();
+
             splashScreen.Show(false);
         }
 
@@ -121,6 +133,12 @@ namespace WPF_Kiosk
             if (Network.AsynchronousClient.IsConnected())
             {
                 Network.AsynchronousClient.UnConnected();
+
+                MessageBox.Show("서버와 연결을 해제하였습니다.");
+
+                setTbServerConeectionTime();
+                //App.ServerConnectionTime = DateTime.Now.ToString();
+                //tbServerConnectionTime.Text = "최종 접속 시간 " + App.ServerConnectionTime;
             }
             else
             {
@@ -134,12 +152,32 @@ namespace WPF_Kiosk
             if (!Network.AsynchronousClient.IsConnected())
             {
                 Network.AsynchronousClient.CreateSocket();
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
                 Network.AsynchronousClient.Send("@" + App.LogedID);
+
+                MessageBox.Show("서버와 연결되었습니다.");
+                setTbServerConeectionTime();
+
+                //App.ServerConnectionTime = DateTime.Now.ToString();
+                //tbServerConnectionTime.Text = "최근 접속 시간 " + App.ServerConnectionTime;
             }
             else
             {
                 MessageBox.Show("이미 연결되어 있습니다.");
+            }
+        }
+
+        private void setTbServerConeectionTime()
+        {
+            if (Network.AsynchronousClient.IsConnected())
+            {
+                serverConnectionTime = DateTime.Now.ToString();
+                tbServerConnectionTime.Text = "최근 접속 시간 " + serverConnectionTime;
+            }
+            else
+            {
+                serverConnectionTime = DateTime.Now.ToString();
+                tbServerConnectionTime.Text = "최종 접속 시간 " + serverConnectionTime;
             }
         }
     }
