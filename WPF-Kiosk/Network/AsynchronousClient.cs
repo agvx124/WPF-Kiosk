@@ -64,6 +64,7 @@ namespace WPF_Kiosk.Network
         public static void Send(String data)
         {
             //데이터 byte형으로 변환
+            Console.WriteLine(data);
             byte[] byteData = Encoding.UTF8.GetBytes(data);
 
             //데이터 전송 시작
@@ -84,7 +85,7 @@ namespace WPF_Kiosk.Network
             try
             {
                 return client.Connected;
-            } catch(Exception e)
+            } catch(Exception)
             {
                 return false;
             }

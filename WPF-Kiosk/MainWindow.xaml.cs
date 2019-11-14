@@ -134,6 +134,8 @@ namespace WPF_Kiosk
             if (!Network.AsynchronousClient.IsConnected())
             {
                 Network.AsynchronousClient.CreateSocket();
+                Thread.Sleep(1000);
+                Network.AsynchronousClient.Send("@" + App.LogedID);
             }
             else
             {
