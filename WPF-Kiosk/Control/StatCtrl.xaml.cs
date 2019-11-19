@@ -62,6 +62,7 @@ namespace WPF_Kiosk.Control
         {
             Dictionary<Common.eCategory, int> categoryCount = new Dictionary<Common.eCategory, int>();
             Dictionary<Common.eCategory, int> categorySales = new Dictionary<Common.eCategory, int>();
+            todaySales = 0;
 
             amountMenuChart.Series = new SeriesCollection();
             salesMenuChart.Series = new SeriesCollection();
@@ -147,13 +148,10 @@ namespace WPF_Kiosk.Control
 
         private void BtnTodaySalesSend_Click(object sender, RoutedEventArgs e)
         {
-            //아이디를 새로 가져왔어요
-            var id = App.LogedID;
-            //차트로드 기능에 있던 todaySales 를 전역 변수로 바꿔서 해결했다.
-            AsynchronousClient.Send("@" + id + "#오늘 판매량:" + todaySales.ToString()+ "원");
-            /*AsynchronousClient.Send("@" + id + "#오늘 판매량: 9999999원");*/ 
-            //백만원 단위부터 음성이 지원안하는건지 타입의 문제인건지 모르겠다...
-            //딱히 해결할 이유가 없기에 고치진 않겠다...
+            String id = App.LogedID;
+
+            AsynchronousClient.Send("@" + id + "#오늘 판매량:" + todaySales.ToString() + "원");
+            MessageBox.Show("전송 되었습니다!", "빽다방");
         }
     }
 }

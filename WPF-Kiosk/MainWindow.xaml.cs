@@ -41,8 +41,6 @@ namespace WPF_Kiosk
         private void LoginControl_OnLoginClick()
         {
             setTbServerConeectionTime();
-            //App.ServerConnectionTime = DateTime.Now.ToString();
-            //tbServerConnectionTime.Text = "최근 접속 시간 " + App.ServerConnectionTime;
         }
 
         private void OrderCtrl_OnBack()
@@ -169,16 +167,12 @@ namespace WPF_Kiosk
 
         private void setTbServerConeectionTime()
         {
+            serverConnectionTime = DateTime.Now.ToString();
             if (Network.AsynchronousClient.IsConnected())
-            {
-                serverConnectionTime = DateTime.Now.ToString();
                 tbServerConnectionTime.Text = "최근 접속 시간 " + serverConnectionTime;
-            }
             else
-            {
-                serverConnectionTime = DateTime.Now.ToString();
                 tbServerConnectionTime.Text = "최종 접속 시간 " + serverConnectionTime;
-            }
+            
         }
     }
 }
