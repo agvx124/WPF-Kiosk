@@ -151,9 +151,8 @@ namespace WPF_Kiosk
         {
             if (!Network.AsynchronousClient.IsConnected())
             {
-                Network.AsynchronousClient.CreateSocket();
-                Thread.Sleep(500);
-                Network.AsynchronousClient.Send("@" + App.LogedID);
+                Network.AsynchronousClient.loginSocket("@" + App.LogedID);
+                Console.WriteLine("" + Network.AsynchronousClient.isLogin);
 
                 MessageBox.Show("서버와 연결되었습니다.");
                 setTbServerConeectionTime();

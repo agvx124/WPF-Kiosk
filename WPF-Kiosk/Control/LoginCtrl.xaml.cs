@@ -22,32 +22,37 @@ namespace WPF_Kiosk.Control
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             ApiNetwork apiNetwork = new ApiNetwork();
-            AsynchronousClient.CreateSocket();
 
-            JObject jObject = JObject.Parse(apiNetwork.PostLogin(tbId.Text, tbPassword.Password.ToString()));
-            int status = Convert.ToInt32(jObject["status"].ToString());
-            string message = jObject["message"].ToString();
-
-            if (status == 200)
+            try
             {
-                AsynchronousClient.Send("@" + tbId.Text);
+                JObject jObject = JObject.Parse(apiNetwork.PostLogin(tbId.Text, tbPassword.Password.ToString()));
+                int status = Convert.ToInt32(jObject["status"].ToString());
+                string message = jObject["message"].ToString();
 
-                var data = jObject["data"];
-                string name = data["name"].ToString();
-
-                App.LogedID = tbId.Text;
-                if (OnLoginClick != null)
+                if (status == 200)
                 {
-                    OnLoginClick();
-                }
+                    AsynchronousClient.loginSocket("@" + tbId.Text);
 
-                MessageBox.Show("안녕하세요! " + name + "님", "로그인 성공!");
-                this.Visibility = Visibility.Hidden;
-            }
-            else
+                    var data = jObject["data"];
+                    string name = data["name"].ToString();
+
+                    App.LogedID = tbId.Text;
+                    if (OnLoginClick != null)
+                    {
+                        OnLoginClick();
+                    }
+
+                    MessageBox.Show("안녕하세요! " + name + "님", "로그인 성공!");
+                    this.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    MessageBox.Show(message, "빽다방");
+                    return;
+                }
+            } catch(Exception)
             {
-                MessageBox.Show(message, "빽다방");
-                return;
+                MessageBox.Show("로그인 서버가 종료되어있습니다.");
             }
         }
     }

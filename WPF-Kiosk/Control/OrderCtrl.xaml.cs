@@ -37,7 +37,7 @@ namespace WPF_Kiosk.Control
             {
                 _seatName = value;
                 // set을 했을시 컨트롤에 추가
-                seat = App.SeatData.listSeat[_seatName-1];
+                seat = App.SeatData.listSeat[_seatName - 1];
 
                 tbTableId.Text = _seatName.ToString() + "번 테이블";
             }
@@ -68,7 +68,7 @@ namespace WPF_Kiosk.Control
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(OnBack!= null)
+            if (OnBack != null)
             {
                 OnBack();
             }
@@ -179,6 +179,26 @@ namespace WPF_Kiosk.Control
             return total;
         }
 
+        private String getPayFoodList()
+        {
+            string result = "";
+            foreach (Food food in seat.FoodList)
+            {
+                Console.WriteLine(food.Name);
+                result += food.Name + " x" + food.Count.ToString() + "\n";
+            }
+            return result;
+        }
+
+        private String checkPayment(bool isChecked)
+        {
+            if (isChecked)
+            {
+                return "현금";
+            }
+            return "카드";
+        }
+
         private void BtnPayment_Click(object sender, RoutedEventArgs e)
         {
             if (seat.FoodList.Count == 0)
@@ -190,23 +210,15 @@ namespace WPF_Kiosk.Control
             // 메뉴 출력
             String payFoodList = "";
             String payment = "";
-            foreach (Food food in seat.FoodList)
-            {
-                payFoodList += food.Name + " x" + food.Count.ToString() + "\n";
-            }
+
+            payFoodList = getPayFoodList();
 
             // 현금/카드 라디오 버튼 체크 확인
-            if (rbCash.IsChecked == true)
-            {
-                payment = "현금";
-            }
-            else
-            {
-                payment = "카드";
-            }
-            
+
+            payment = checkPayment(rbCash.IsChecked?? true);
+
             // 메세지 박스 결제 메뉴, 결제 방식, 결제 금액 출력 후 YES일시 true NO일시 false
-            if (MessageBox.Show("결제 메뉴\n" + payFoodList + "\n결제 방식\n" + payment +"\n\n총 결제 금액 - " + getTotalPrice().ToString() + "원", "빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("결제 메뉴\n" + payFoodList + "\n결제 방식\n" + payment + "\n\n총 결제 금액 - " + getTotalPrice().ToString() + "원", "빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 // 통계 위한 orderlog 데이터 추가
                 foreach (Food food in seat.FoodList)
@@ -214,13 +226,20 @@ namespace WPF_Kiosk.Control
                     App.OrderLogData.Find(x => x.food.Name == food.Name).Count += food.Count;
                 }
                 var id = App.LogedID;
-                AsynchronousClient.Send("@" + id + "#"+getTotalPrice().ToString()+"원이 결제되었습니다.");
+
+                if (AsynchronousClient.isLogin == false)
+                {
+                    MessageBox.Show("서버가 연결되어 있지 않습니다.");
+                    return;
+                }
+                AsynchronousClient.SendMessage("@" + id + "#" + getTotalPrice().ToString() + "원이 결제되었습니다.");
                 MessageBox.Show("결제 성공하셨습니다!", "빽다방");
                 // 결제 성공시 메뉴 clear, 메인화면으로 돌아가기
                 seat.FoodList.Clear();
 
                 ICollectionView view = CollectionViewSource.GetDefaultView(seat.FoodList);
                 view.Refresh();
+
 
                 this.Visibility = Visibility.Collapsed;
             }
@@ -253,13 +272,13 @@ namespace WPF_Kiosk.Control
             try
             {
                 Food food = setFoodbyList();
-                
-               
+
+
                 if (seat.FoodList.Find(x => x.Name == food.Name).Count > 1)
                 {
                     seat.FoodList.Find(x => x.Name == food.Name).Count--;
                 }
-                
+
                 //상품개수가 0개일 때 리스트가 삭제됨 (어떠한 오류로 0보다 작을 때 사라진다..)
                 //우선 Count의 값이 1이면 삭제하도록 짜둠
                 else if (seat.FoodList.Find(x => x.Name == food.Name).Count == 1)
@@ -267,7 +286,7 @@ namespace WPF_Kiosk.Control
                     int i = seat.FoodList.FindIndex(x => x.Name == food.Name);
                     seat.FoodList.RemoveAt(i);
                 }
-                
+
             }
             catch (NullReferenceException)
             {
@@ -277,18 +296,18 @@ namespace WPF_Kiosk.Control
             {
                 SetLvOrderItem();
             }
-            
+
         }
 
         //전체 메뉴 삭제 기능
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("정말 테이블의 주문 내용을 전부 삭제하시겠습니까?","빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("정말 테이블의 주문 내용을 전부 삭제하시겠습니까?", "빽다방", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 seat.FoodList.Clear();
-                
+
                 SetLvOrderItem();
-                
+
                 MessageBox.Show("삭제되었습니다.", "빽다방");
             }
             else
@@ -306,7 +325,7 @@ namespace WPF_Kiosk.Control
                 int i = seat.FoodList.FindIndex(x => x.Name == food.Name);
                 seat.FoodList.RemoveAt(i);
             }
-            
+
             catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show("음식을 선택하지 않았습니다", "빽다방");

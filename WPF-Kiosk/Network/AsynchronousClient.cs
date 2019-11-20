@@ -32,14 +32,11 @@ namespace WPF_Kiosk.Network
         private static ManualResetEvent receiveDone =
                 new ManualResetEvent(false);
 
+        public static bool isLogin = false;
         private static Socket client;
+        private static String response = String.Empty;
 
-        public AsynchronousClient()
-        {
-            CreateSocket();
-        }
-
-        public static void CreateSocket()
+        public static void loginSocket(String message)
         {
             try
             {
@@ -54,6 +51,16 @@ namespace WPF_Kiosk.Network
                 client.BeginConnect(remoteEp,
                     new AsyncCallback(ConnectCallback), client);
                 connectDone.WaitOne();
+                isLogin = true;
+
+                Send(message);
+                sendDone.WaitOne();
+
+                // Receive the response from the remote device.  
+                Receive(client);
+                receiveDone.WaitOne();
+
+                Console.WriteLine("Response received : {0}", response);
             }
             catch (Exception e)
             {
@@ -61,10 +68,27 @@ namespace WPF_Kiosk.Network
             }
         }
 
-        public static void Send(String data)
+        public static void SendMessage(string message)
+        {
+            if (isLogin)
+            {
+                Send(message);
+
+                sendDone.WaitOne();
+
+                Receive(client);
+                receiveDone.WaitOne();
+                Console.WriteLine("Response received : {0}", response);
+            }
+            else
+            {
+                MessageBox.Show("서버가 종료되어 있습니다. 다시 연결하여 주세요");
+            }
+        }
+
+        private static void Send(String data)
         {
             //데이터 byte형으로 변환
-            Console.WriteLine(data);
             byte[] byteData = Encoding.UTF8.GetBytes(data);
 
             //데이터 전송 시작
@@ -83,14 +107,7 @@ namespace WPF_Kiosk.Network
         // 소켓 서버와 연결되어 있는지 확인하는 함수
         public static bool IsConnected()
         {
-            try
-            {
-                return client.Connected;
-            } catch(Exception)
-            {
-                return false;
-            }
-
+            return isLogin;
         }
 
         // 소켓 서버와 연결을 끊는 함수
@@ -192,13 +209,19 @@ namespace WPF_Kiosk.Network
                     else
                     {
                         //서버 종료 상태
-                        //모든 데이터 도착, response안으로 넣음.
-                        //if (state.sb.Length > 1)
-                        //{
-                        //    response = state.sb.ToString();
-                        //}
+                        isLogin = false;
                     }
+
+                    if (state.sb.Length > 1)
+                    {
+                        response = state.sb.ToString();
+                    }
+
                     receiveDone.Set();
+                }
+                else
+                {
+                    isLogin = false;
                 }
 
             }

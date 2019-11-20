@@ -150,7 +150,11 @@ namespace WPF_Kiosk.Control
             //아이디를 새로 가져왔어요
             var id = App.LogedID;
             //차트로드 기능에 있던 todaySales 를 전역 변수로 바꿔서 해결했다.
-            AsynchronousClient.Send("@" + id + "#오늘 판매량:" + todaySales.ToString()+ "원");
+            if (AsynchronousClient.isLogin == false){
+                MessageBox.Show("서버가 종료되어있습니다.");
+                return;
+            }
+            AsynchronousClient.SendMessage("@" + id + "#오늘 판매량:" + todaySales.ToString()+ "원");
             /*AsynchronousClient.Send("@" + id + "#오늘 판매량: 9999999원");*/ 
             //백만원 단위부터 음성이 지원안하는건지 타입의 문제인건지 모르겠다...
             //딱히 해결할 이유가 없기에 고치진 않겠다...

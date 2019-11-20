@@ -20,9 +20,9 @@
 
             <TextBlock MouseLeftButtonDown="TbExitProgram_MouseLeftButtonDown" Margin="0, 0, 30, 0" FontSize="20" x:Name="tbExitProgram" Text="프로그램 종료"/>
 
-            <TextBlock MouseLeftButtonDown="TbConnectedServer_MouseLeftButtonDown" Margin="0, 0, 30, 0" FontSize="20" x:Name="tbConnectedServer" Text="서버 연결"/>
+            <TextBlock MouseLeftButtonDown="TbConnectedServer_MouseLeftButtonDown" Margin="0, 0, 30, 0" FontSize="20" x:Name="tbConnectedServer" Text="서버 연결" Visibility="Collapsed"/>
 
-            <TextBlock MouseLeftButtonDown="TbExitServer_MouseLeftButtonDown" Margin="0, 0, 30, 0" FontSize="20" x:Name="tbExitServer" Text="서버 끊기"/>
+            <TextBlock MouseLeftButtonDown="TbExitServer_MouseLeftButtonDown" Margin="0, 0, 30, 0" FontSize="20" x:Name="tbExitServer" Text="서버 끊기" Visibility="Collapsed"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10, 15, 10, 0">
